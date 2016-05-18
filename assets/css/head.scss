@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+
+/* Global */
+
+html {
+	font-size:10px; 
+    overflow-x:hidden;
+}
+body {
+    font-size:1.4#{$unit-size};
+}
+
+/* HEADING SIZE */
+
+@include heading-size;
+
+a {
+    color:$link-color;
+    text-decoration:none;
+}
+
+/* Main Menu */
+
+.main-nav {
+    text-align:right;
+}
+.main-menu {
+    >li {
+        display:inline-block;
+        a {
+            font:400 normal 18px 'Helvethaica';
+            color:#FFF;
+        }
+    }
+}

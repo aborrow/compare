@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+// UNIT
+
+$unit-size:rem; //unit size
+
+// THEME & COLOR
+
+$primary-color:#22a5e1;
+$secondary-color:#999;
+
+$bg-color:#EEE;
+$bg2-color:#DDD;
+$border-color:#ccc;
+
+$text-color:#333;
+$link-color:#22a5e1;
+
+// CLEAR
+.clearfloat {
+    &:after {
+        display:table;
+        content:'';
+        clear:both;
+    }
+}
+
+// HEADING SIZE
+
+@mixin heading-size {
+    @for $i from 1 through 6 {
+        h#{$i} {
+            font: {
+                size:3.5+-($i*0.4)#{$unit-size};
+                family:'Helvethaica';
+            }
+        }
+    }
+}
+
+// BORDER RADIUS 
+
+@mixin border-radius($radius) {
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    -ms-border-radius:$radius;
+    border-radius:$radius;
+}
+
+// BOX SHADOW
+
+@mixin box-shadow($shadow...) {
+ 	   -webkit-box-shadow:$shadow;
+       -moz-box-shadow:$shadow;
+       -ms-box-shadow:$shadow;
+       box-shadow:$shadow;
+}
+
+// TRANSITION
+
+@mixin easeOutCirc {
+ 	-webkit-transition:all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    -moz-transition:all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    -ms-transition:all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition:all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);   
+}

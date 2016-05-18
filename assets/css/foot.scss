@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+/* Footer */
+
+
+.btn {
+    font-family:'Helvethaica';
+    
+ 	&.-blue {
+        background:$primary-color;
+        color:#FFF;
+    }
+    
+    &.-round {
+        border-radius:25px;   
+    }
+}
