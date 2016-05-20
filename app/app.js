@@ -10,7 +10,22 @@ angular.module('app', [
   'ui.checkbox'
 ])
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/'});
+	$routeProvider
+        // .when('/clients',{
+        //     templateUrl: '/clients.html',
+        //     resolve: {
+	       //      auth: function(Auth, $location){
+		      //       return Auth.auth.$requireAuth().catch(function(){
+		      //       	console.log('test');
+		      //         $location.path( "/signin" );
+		      //       });
+		      //    }
+      		// }
+        // })
+        .when('/signin',{
+            templateUrl: '/signin.html',
+        })
+        .otherwise({redirectTo: '/'});
 }])
 
 .constant('FirebaseUrl', "https://aborrow-test.firebaseio.com/")
