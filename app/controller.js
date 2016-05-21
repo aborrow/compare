@@ -2,12 +2,27 @@
 
 angular.module('app')
 
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {
-    templateUrl: 'index.html',
-    controller: 'mainController'
-  });
-}])
+// .config(['$routeProvider', function($routeProvider) {
+//   $routeProvider
+
+//   .when('/kk', {
+//     templateUrl: '../index.html',
+//     controller: 'mainController'
+//   })
+
+//   .when('/clients_list', {
+//     templateUrl: '../clients.html',
+//     controller: 'clientController',
+//     // resolve: {
+//     //           auth: function(Auth, $location){
+//     //             return Auth.auth.$requireAuth().catch(function(){
+//     //              console.log('test');
+//     //               $location.path( "/signin" );
+//     //             });
+//     //          }
+//     //        }
+//   });
+// }])
 
 .controller('mainController', function($firebaseObject, $firebaseArray, FirebaseUrl, $scope, $filter, $http) {
     // var config = {
@@ -23,8 +38,8 @@ angular.module('app')
 
 	  var ref = new Firebase(FirebaseUrl+'/compare/loans');
     $scope.data = $firebaseObject(ref);
-    var refUser = new Firebase(FirebaseUrl+'/user_data');
-    $scope.user_data = $firebaseObject(refUser);
+    // var refUser = new Firebase(FirebaseUrl+'/user_data');
+    // $scope.user_data = $firebaseObject(refUser);
     $scope.selected = [];
     // console.log($scope.data);
 
@@ -115,8 +130,9 @@ angular.module('app')
             loanTerm: $scope.loanTerm,
             loanAmount: $scope.loanAmount,
             selectedLoans: $scope.selected,
-            date: new Date()
+            date: new Date().toString()
         };
+        console.log(data);
         var dataRef = new Firebase(FirebaseUrl+"/user_data");
         dataRef.push(angular.copy(data)); //not yet tested
         // dataRef.push(JSON.parse(data)); //not yet tested
@@ -230,5 +246,34 @@ angular.module('app')
 
       return x;
     };
+
+})
+
+.controller('clientController', function($firebaseObject, $firebaseArray, FirebaseUrl, $scope) {
+    var ref = new Firebase(FirebaseUrl);
+    console.log($scope.authData);
+
+    $scope.login = function(){
+      ref.authWithPassword({
+        email    : $scope.email,
+        password : $scope.password
+      }, function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+        } else {
+          console.log("Authenticated successfully with payload:", authData);
+          $scope.authData = authData;
+          $scope.user_data = $firebaseObject(refUser);
+          $scope.$apply();
+        }
+      });
+    }
+
+    var refUser = new Firebase(FirebaseUrl+'/user_data');
+
+    var $load = $('<div align="center"><h1>Loading...</h1></div>').appendTo('main-list');
+    refUser.on('value', function () {
+      $load.hide();
+    })
 
 });

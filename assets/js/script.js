@@ -16,7 +16,8 @@ jQuery(document).ready(function($) {
 		$.colorbox.close();
 	});
 
-	$('.collapse-head').click(function() {
+	$(document).on("click", '.collapse-head', function() {
+	// $('.collapse-head').click(function() {
 		$(this).next('.collapse-body').slideToggle('fast');
 		$(this).toggleClass('collapsed');
 	});
@@ -49,4 +50,15 @@ jQuery(document).ready(function($) {
 								$(this).siblings().removeClass("selected");
                 $(this).addClass('selected');
 	});
+
+	$(document).on("click", ".-clientdetail", function() {
+		$(this).parent('.button').siblings('.client-expand-info').toggleClass('show');
+	});
+
+	// var $load = $('<div class="loading">Loading...</div>').appendTo('body')
+ //    var db = new Firebase('url/data')
+
+	// 	db.on('value', function () {
+	// 	  $load.hide()
+	// 	})
 });
