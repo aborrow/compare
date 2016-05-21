@@ -16,7 +16,7 @@
 	<meta property="og:url" content="www.aborrow.com/เปรียบเทียบ-สินเชื่อส่วนบุคคล">
 	<meta property="og:site_name" content="aBorrow">
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:description" content="เปรียบเทียบ สินเชื่อส่วนบุคคล สินเชื่อเงินสด บัตรกดเงินสด ที่ดีที่สุดสำหรับคุณ จากหลายธนาคารและสถาบันการเงิน>
+	<meta name="twitter:description" content="เปรียบเทียบ สินเชื่อส่วนบุคคล สินเชื่อเงินสด บัตรกดเงินสด ที่ดีที่สุดสำหรับคุณ จากหลายธนาคารและสถาบันการเงิน">
 	<meta name="twitter:title" content="เปรียบเทียบ สินเชื่อส่วนบุคคล สินเชื่อเงินสด บัตรกดเงินสด">
 	<link rel="shortcut icon" href="http://www.aborrow.com/wp-content/uploads/2016/04/aborrow-mini.png">
 	<link rel="icon" href="http://www.aborrow.com/wp-content/uploads/2016/04/cropped-aborrow-mini-32x32.png" sizes="32x32">
@@ -28,6 +28,7 @@
 	<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 	<link href="assets/css/colorbox.css" rel="stylesheet">
 	<link href="assets/css/style.css" rel="stylesheet">
+	<link href="assets/css/animate.css" rel="stylesheet">
 	<link href="assets/css/wp-header.css" rel="stylesheet">
 	<link href="assets/css/responsive.css" rel="stylesheet">
 </head>
@@ -67,6 +68,17 @@
                                 </div>
                             </li>
                         </ul>
+						<div id="mobile_nav_menu">
+							<div class="mobile_nav">
+								<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
+								<ul id="mobile_menu" class="mobile_menu slideup">
+									<li><a href="http://www.aborrow.com/">หน้าแรก</a></li>
+									<li><a href="http://www.aborrow.com/%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b9%80%e0%b8%8a%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%aa%e0%b9%88%e0%b8%a7%e0%b8%99%e0%b8%9a%e0%b8%b8%e0%b8%84%e0%b8%84%e0%b8%a5/">รู้จักสินเชื่อส่วนบุคคล</a></li>
+									<li><a href="http://www.aborrow.com/whyaborrow/">ทำไมถึงสมัครกับ aBorrow</a></li>
+									<li><a href="http://www.aborrow.com/faq/">คำถามที่พบบ่อย</a></li>
+								</ul>
+							</div>
+						</div>
                     </nav>
                 </div>
             </div>
@@ -720,11 +732,38 @@
         $(window).bind('scroll', function() {
             if ($(window).scrollTop() > 0) {
                 $("#main-header").addClass('fixed-header');
+				$("#main-header").removeClass('not-fixed-header');
             } else {
                 $("#main-header").removeClass('fixed-header');
+				$("#main-header").addClass('not-fixed-header');
             }
         });
+		$('#mobile_nav_menu').on("click",function(){
+			
+			//$('#mobile_menu').toggleClass('slidedown');
+			//$('#mobile_menu').toggleClass('slideup');
+			if($('#mobile_menu').hasClass('opened')){
+				toggleSilde();
+				setTimeout(function(){ $('#mobile_menu').removeClass('opened'); }, 600);
+				
+			}else{
+				$('#mobile_menu').addClass('opened');
+				
+				setTimeout(function(){ toggleSilde(); }, 100);
+				
+				
+			}
+			
+		});
+		
     });
+	function toggleSilde()
+	{
+		if ($("#mobile_menu").hasClass("slideup"))
+			$("#mobile_menu").removeClass("slideup").addClass("slidedown");
+		else
+			$("#mobile_menu").removeClass("slidedown").addClass("slideup");
+	}
 </script>
 </body>
 </html>
