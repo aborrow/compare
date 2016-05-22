@@ -1,3 +1,32 @@
 /* Scss Document */
 /* XS */
 /* LARGE SCREEN */
+
+@media (max-width: 769px){
+    #offer-content {
+       display: flex;
+       flex-direction: column;
+    }
+    
+    #offer-content > .col-md-3{
+        order: 2;
+    }
+}
+@media (max-width: 480px){
+    .form-info>.item.col-3>div,
+    .form-info>.item.col-2>div{
+        width: auto;
+        float: none;
+    }
+    .compare-item .btn.-loaninterest,
+    .compare-item .btn.-loandetail{
+         width: 50%;
+    }
+    .compare-item .btn.-loandetailsub{
+         width: 100%;
+    }
+    .compare-item .btn.-loandetailsub.selected {
+        width: 100%;
+        height: auto;
+    }
+}
