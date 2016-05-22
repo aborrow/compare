@@ -247,19 +247,26 @@
 									<input ng-model="work_exp" ng-init="work_exp = 6" type="text" class="input-info" value="6">
 								</div>
 							</div> -->
-							<div class="item col-2">
+							<div class="item col-3">
 								<!-- <div>
 									<h5 class="title">ยอดที่ต้องการผ่อนต่อเดือน(บาท)</h5>
 									<input ng-model="monthlyPmt" type="text" class="input-info" ng-init="monthlyPmt=5387.47">
 								</div> -->
 								<div>
+									<select class="form-control" ng-model="loan_type">
+										<option value="" ng-selected="true">กรุณาเลือกประเภทสินเชื่อ</option>
+										<option value="loan">สินเชื่อเงินสด</option>
+										<option value="card">บัตรกดเงินสด</option>
+									</select>
+								</div>
+								<div>
 									<!-- <h5 class="title">วงเงินที่ต้องการกู้(บาท) *สูงสุดไม่เกิน 5 เท่าของรายได้ต่อเดือน</h5> -->
 									<input awnum num-thousand="true" num-int="8" type="text" class="form-control" ng-model="loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
 									<h5 class="title">*สูงสุดไม่เกิน 5 เท่าของรายได้ต่อเดือน</h5>
 								</div>
-								<div>
+								<div ng-hide="loan_type=='card'">
 									<!-- <h5 class="title">ระยะเวลาการกู้ (เดือน)</h5> -->
-									<select class="form-control" ng-model="loanTerm" autocomplete="off">
+									<select class="form-control" ng-model="loanTerm" autocomplete="off" ng-init="loanTerm=0">
 										<option value="0" ng-selected="true">กรุณาเลือกระยะเวลาการกู้ (เดือน)</option>
 										<option value="12">12</option>
 										<option value="24">24</option>
@@ -346,7 +353,8 @@
 									</select>
 								</div>
 							</div>
-						</div><!--
+						</div>
+						<!--
 						<div class="loan-calc">
 							<div class="item period">
 								<h4 class="title">ยอดผ่อนชำระต่อเดือน</h4>
@@ -356,7 +364,7 @@
 					<!-- </div> -->
 
 				</div>
-				<div class="list-compare" ng-repeat="loan in refreshData(occupation,salary,work_exp,loanTerm, loanAmount) | orderBy:['preciseInt','interest.max','interest.min']">
+				<div class="list-compare" ng-repeat="loan in refreshData(loan_type, occupation,salary,work_exp,loanTerm, loanAmount) | orderBy:['preciseInt','interest.max','interest.min']">
 					<div class="compare-item">
 						<div class="padding">
 							<div class="row" style="margin-bottom: 0px;" vertical-align="middle">
@@ -395,10 +403,15 @@
 									<h1 class="number">{{loanTerm}}</h1>
 									<p class="desc">ระยะเวลาผ่อนชำระ</p>
 								</div> -->
-								<div class="col-lg-2">
+								<div ng-hide="loan_type=='card'" class="col-lg-2">
 									<h4 class="number" ng-show="!loan.monthlyRepayment">{{calRepayment(loanAmount, loanTerm, loan.interest.max) | number:0}}</h4>
 									<h4 class="number" ng-show="loan.monthlyRepayment">{{loan.monthlyRepayment | number:0}}</h4>
 									<p class="desc">ยอดผ่อนชำระต่อเดือน</p>
+								</div>
+								<div ng-show="loan_type=='card'" class="col-lg-2">
+									<h4 class="number">{{loan.minimum_repay.rate | number:0}}%</h4>
+									<p>{{loan.minimum_repay.remarks}}</p>
+									<p class="desc">ชำระคืนขั้นต่ำของยอดที่ใช้ต่อเดือน</p>
 								</div>
 							</div>
 						</div>
@@ -479,9 +492,15 @@
 												{{loan.amount.remarks}}
 												</td>
 											</tr> -->
-											<tr>
+											<tr ng-show="loan_type=='loan'">
 												<td width="50%" style="vertical-align:middle;">ระยะเวลากู้ (เดือน)</td>
 												<td width="50%">{{loan.term.min}} - {{loan.term.max}} เดือน</td>
+											</tr>
+											<tr ng-show="loan_type=='card'">
+												<td width="50%" style="vertical-align:middle;">ชำระคืนขั้นต่ำของยอดที่ใช้ต่อเดือน</td>
+												<td width="50%">
+												{{loan.minimum_repay.rate | number:0}}%
+												<br>{{loan.minimum_repay.remarks}}</td>
 											</tr>
 											<tr>
 												<td width="50%" style="vertical-align:middle;">อัตราดอกเบี้ยต่อปี (%)</td>
@@ -508,7 +527,10 @@
 											</tr>
 											<tr>
 												<td width="50%">ประเภทอัตราดอกเบี้ย</td>
-												<td width="50%">{{loan.interest_term}}</td>
+												<td width="50%">
+													{{loan.interest_term.term}}
+													<br> {{loan.interest_term.remarks}}
+													</td>
 											</tr>
 											<tr>
 												<td width="50%">ตารางการเปิดเผยข้อมูลผลิตภัณฑ์</td>

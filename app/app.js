@@ -29,7 +29,7 @@ angular.module('app', [
 //         .otherwise({redirectTo: '/'});
 // }])
 
-.constant('FirebaseUrl', "https://aborrow-test.firebaseio.com/")
+.constant('FirebaseUrl', "https://aborrow.firebaseio.com/")
 
 
 // .filter('orderObjectBy', function(){
