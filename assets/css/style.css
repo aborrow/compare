@@ -91,3 +91,8 @@ p{font:400 normal 18px 'Helvethaica';}
 .collapse-box .collapse-body{overflow:hidden}
 .collapse-box .btn{display:block;width:100%;font-size:18px;font-weight:normal}
 .collapse-box p{font-size:18px;font-family:'Helvethaica';color:#999}
+
+.btn > a{
+    text-decoration: none;
+    color: inherit;
+}

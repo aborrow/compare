@@ -40,7 +40,9 @@
         <div id="top-header">
             <div class="container">
                 <div id="contact-info">
-                    <span class="info-phone">089 492 3675</span>
+					<a href="tel:089-492-3675">
+                    	<span class="info-phone">089 492 3675</span>
+					</a>
                     <a href="mailto:contact@aborrow.com">
                         <span class="info-email">contact@aborrow.com</span>
                     </a>
@@ -86,7 +88,7 @@
     </header>
 <section class="section-padding">
 	<div class="container">
-		<div class="row">
+		<div class="row" id="offer-content">
 			<!-- <div sticky> -->
 			<div class="col-md-3">
 				<!-- <section > -->
@@ -185,7 +187,9 @@
 								<!-- <h3 align="center">โทร	0894923675</h3>
 								<h4 class="text-center">หรือ</h4> -->
 								<div>
-									<button class="btn btn-success">โทร  089 - 492 - 3675</button>
+									<button class="btn btn-success">
+										<a href="tel:089-492-3675">โทร  089 - 492 - 3675</a>
+									</button>
 								</div>
 							</form>
 						</article>
@@ -762,23 +766,15 @@
             }
         });
 		$('#mobile_nav_menu').on("click",function(){
-			
-			//$('#mobile_menu').toggleClass('slidedown');
-			//$('#mobile_menu').toggleClass('slideup');
 			if($('#mobile_menu').hasClass('opened')){
 				toggleSilde();
 				setTimeout(function(){ $('#mobile_menu').removeClass('opened'); }, 600);
 				
 			}else{
 				$('#mobile_menu').addClass('opened');
-				
 				setTimeout(function(){ toggleSilde(); }, 100);
-				
-				
-			}
-			
+			}		
 		});
-		
     });
 	function toggleSilde()
 	{
