@@ -42,13 +42,12 @@ jQuery(document).ready(function($) {
 	});
 	
 	$(document).on("click", ".-loandetailsub", function() {
-								$(this).siblings().removeClass("selected");
+				$(this).siblings().removeClass("selected");
                 $(this).addClass('selected');
 	});
 
 	$(document).on("click", ".-loaninterest", function() {
-								$(this).siblings().removeClass("selected");
-                $(this).addClass('selected');
+				$(this).toggleClass("selected");
 	});
 
 	$(document).on("click", ".-clientdetail", function() {

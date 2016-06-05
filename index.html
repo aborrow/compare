@@ -31,12 +31,35 @@
 	<link href="assets/css/animate.css" rel="stylesheet">
 	<link href="assets/css/wp-header.css" rel="stylesheet">
 	<link href="assets/css/responsive.css" rel="stylesheet">
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-72097115-2', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+	<!-- Hotjar Tracking Code for http://www.aborrow.com -->
+	<script>
+	    (function(h,o,t,j,a,r){
+	        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+	        h._hjSettings={hjid:220040,hjsv:5};
+	        a=o.getElementsByTagName('head')[0];
+	        r=o.createElement('script');r.async=1;
+	        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+	        a.appendChild(r);
+	    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+	</script>
+
 </head>
 
 <body>
-<div ng-app="app" ng-controller="mainController">
+<div ng-app="app" ng-controller="mainController" ng-cloak>
 <!-- Page Header -->
- <header id="main-header">
+<!--  <header id="main-header">
         <div id="top-header">
             <div class="container">
                 <div id="contact-info">
@@ -61,8 +84,9 @@
                     <nav id="top-menu-nav">
                         <ul id="top-menu" class="nav">
                             <li><a href="http://www.aborrow.com/">หน้าแรก</a></li>
+                            <li><a href="http://www.aborrow.com/%E0%B9%80%E0%B8%9B%E0%B8%A3%E0%B8%B5%E0%B8%A2%E0%B8%9A%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B8%A2%E0%B8%9A-%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B9%80%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%AA%E0%B9%88%E0%B8%A7%E0%B8%99%E0%B8%9A%E0%B8%B8%E0%B8%84%E0%B8%84%E0%B8%A5/">เปรียบเทียบ สินเชื่อส่วนบุคคล</a></li>
                             <li><a href="http://www.aborrow.com/%e0%b8%aa%e0%b8%b4%e0%b8%99%e0%b9%80%e0%b8%8a%e0%b8%b7%e0%b9%88%e0%b8%ad%e0%b8%aa%e0%b9%88%e0%b8%a7%e0%b8%99%e0%b8%9a%e0%b8%b8%e0%b8%84%e0%b8%84%e0%b8%a5/">รู้จักสินเชื่อส่วนบุคคล</a></li>
-                            <li><a href="http://www.aborrow.com/whyaborrow/">ทำไมถึงสมัครกับ aBorrow</a></li>
+                            <li><a href="/clients">ทำไมถึงสมัครกับ aBorrow</a></li>
                             <li><a href="http://www.aborrow.com/faq/">คำถามที่พบบ่อย</a></li>
                             <li>
                                 <div id="top_search">
@@ -85,7 +109,31 @@
                 </div>
             </div>
         </div>
-    </header>
+ </header> -->
+  <header id="main-header">
+        <div id="header">
+            <div class="container">
+                <div class="logo_container">
+                    <span class="logo_helper"></span>
+                    <a href="http://www.aborrow.com/">
+                        <img src="http://www.aborrow.com/wp-content/uploads/2016/05/aborrow-logo.png" alt="aBorrow" id="logo">
+                    </a>
+                </div>
+                <div id="top-navigation" style="padding-left: 115px;">
+                    <!-- <nav id="top-menu-nav"> -->
+                        <ul id="top-menu" >
+                            <li><a href="http://line.me/ti/p/@aborrow">
+		                        <img src="/assets/img/line_logo.png" alt="Line">@aborrow
+		                    </a></li>
+                            <li><a href="tel:089-492-3675">
+		                    	<span class="info-phone">089 492 3675</span>
+							</a></li>
+                        </ul>
+                    <!-- </nav> -->
+                </div>
+            </div>
+        </div>
+ </header>
 <section class="section-padding">
 	<div class="container">
 		<div class="row" id="offer-content">
@@ -157,7 +205,7 @@
 						<article class="collapse-body">
 							<p ng-show="selected.length==0">ยังไม่ได้เลือกข้อเสนอ</p>
 							<ul class="bank-list">
-								<li ng-repeat="s in selected">
+								<li ng-repeat="s in selected" ng-cloak>
 									<input type="checkbox" id="bank-list-{{s.eng_name}}">
 									<label for="bank-list-{{s.eng_name}}"><img ng-src="{{s.logo}}" class="img-responsive" alt=""></label>
 								</li>
@@ -368,7 +416,7 @@
 					<!-- </div> -->
 
 				</div>
-				<div class="list-compare" ng-repeat="loan in refreshData(loan_type, occupation,salary,work_exp,loanTerm, loanAmount) | orderBy:['preciseInt','interest.max','interest.min']">
+				<div class="list-compare" ng-repeat="loan in refreshData(loan_type, occupation,salary,work_exp,loanTerm, loanAmount) | orderBy:['preciseInt','interest.max','interest.min']" ng-cloak>
 					<div class="compare-item">
 						<div class="padding">
 							<div class="row" style="margin-bottom: 0px;" vertical-align="middle">

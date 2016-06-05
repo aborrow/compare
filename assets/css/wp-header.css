@@ -20,11 +20,11 @@ body {
 
 #main-header {
     background-color: #fff;
-    z-index: 100;
+    /*z-index: 100;*/
     width: 100%;
-    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+/*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);*/
 }
 
 #top-header {
@@ -96,7 +96,7 @@ body {
 }
 
 #header {
-    height: 80px;
+    height: 100px;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -ms-transition: all 0.4s ease-in-out;
@@ -133,7 +133,7 @@ span.logo_helper {
 
 #logo {
     display: inline-block;
-    max-height: 54%;
+    max-height: 70%;
     margin-bottom: 0;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -144,6 +144,7 @@ img {
     vertical-align: middle;
     max-width: 100%;
     height: auto;
+    max-height: 50px;
 }
 
 #top-navigation {
@@ -182,13 +183,15 @@ img {
 #top-menu a {
     display: block;
     position: relative;
-    color: rgba(0, 0, 0, 0.6);
+    color: #22a5e1;
+    /*rgba(0, 0, 0, 0.6);*/
     text-decoration: none;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
     background-color: #fff;
     padding: 10px 0;
+    font: 400 normal 36px 'Helvethaica';
 }
 #top-menu-nav > ul > li > a:hover,
 .info-email:hover,
