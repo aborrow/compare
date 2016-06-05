@@ -36,8 +36,16 @@ angular.module('app')
     // $scope.test = fbDb.ref("/compare/loans");
     // console.log($scope.test.ref, $scope.test.key);
 
-	  var ref = new Firebase(FirebaseUrl+'/compare/loans');
-    $scope.data = $firebaseObject(ref);
+    var refLoans = new Firebase(FirebaseUrl+'/compare/loans');
+	  var refCards = new Firebase(FirebaseUrl+'/compare/cards');
+
+    $scope.data = {
+      'loan': $firebaseObject(refLoans),
+      'card': $firebaseObject(refCards)
+    }
+
+    // $scope.allLoans = $firebaseObject(refLoans);
+    // $scope.allCards = $firebaseObject(refCards);
     // var refUser = new Firebase(FirebaseUrl+'/user_data');
     // $scope.user_data = $firebaseObject(refUser);
     $scope.selected = [];
@@ -59,14 +67,15 @@ angular.module('app')
 
     // console.log($scope.calRepayment(100000, 24, 26));
 
-    $scope.refreshData = function(occupation,salary,work_exp,loanTerm, loanAmount){
+    $scope.refreshData = function(loan_type, occupation,salary,work_exp,loanTerm, loanAmount){
         var filtered = [];
-        var allLoans = $scope.data;
+
+        var allLoans = $scope.data[loan_type];
         angular.forEach(allLoans, function(value, key) {
           if(value.qualifications[occupation]
             && value.qualifications[occupation].min_salary <= salary
             && value.qualifications[occupation].min_work_exp <= work_exp
-            && loanTerm >= value.term.min && loanTerm <= value.term.max
+            && ((loan_type == 'loan' && loanTerm >= value.term.min && loanTerm <= value.term.max) || loan_type == 'card')
             // && (loanAmount <= value.amount.max)
             ) {
                 var obj = value;
@@ -75,12 +84,14 @@ angular.module('app')
                   var tiers = obj.interest_tiers[occupation];
                   var preciseInt = $scope.getPreciseInterest(tiers, salary, loanAmount, loanTerm);
                   //console.log(obj.eng_name, preciseInt, loanTerm);
-                  
+                  obj.monthlyRepayment = 0;
                   if(preciseInt){
                     obj.preciseInt = preciseInt;
-                    obj.monthlyRepayment = $scope.calRepayment(loanAmount, loanTerm, preciseInt);
+                    if(loan_type == 'loan')
+                      obj.monthlyRepayment = $scope.calRepayment(loanAmount, loanTerm, preciseInt);
                   }else{
-                    obj.monthlyRepayment = $scope.calRepayment(loanAmount, loanTerm, obj.interest.max);
+                    if(loan_type == 'loan')
+                      obj.monthlyRepayment = $scope.calRepayment(loanAmount, loanTerm, obj.interest.max);
                   }
                   // console.log(obj.bank_name, obj.preciseInt, obj.interest.max, obj.monthlyRepayment)
                 }
@@ -123,7 +134,9 @@ angular.module('app')
 
     $scope.saveUserData = function(){
         //console.log($scope.selected);
-        var data = {user: $scope.user,
+        var data = {
+            user: $scope.user,
+            loan_type: $scope.loan_type,
             occupation: $scope.occupation,
             salary: $scope.salary,
             work_exp: $scope.work_exp,
@@ -133,7 +146,7 @@ angular.module('app')
             date: new Date().toString()
         };
         console.log(data);
-        var dataRef = new Firebase(FirebaseUrl+"/user_data");
+        var dataRef = new Firebase(FirebaseUrl+"/compare/user_data");
         dataRef.push(angular.copy(data)); //not yet tested
         // dataRef.push(JSON.parse(data)); //not yet tested
         // $http({
@@ -230,13 +243,17 @@ angular.module('app')
     $scope.getPreciseInterest = function(tiers, salary, loanAmount, loanTerm){
       var x;
       // var occ_tier = tiers[occupation];
+
         angular.forEach(tiers, function(value, key) {
             if((salary >= value.salary_min && salary <= value.salary_max)
                 || (!value.salary_max && salary >= value.salary_min)
-                || (loanTerm >= value.term_min && loanTerm <= value.term_max) ) {
+                || (loanTerm >= value.term_min && loanTerm <= value.term_max) 
+                || (!value.salary_max && !value.salary_min && !value.term_max && !value.term_min)) {
                 angular.forEach(value.rates, function(v, k) {
-                  if((loanAmount >= v.amount_min && loanAmount <= v.amount_max)
-                      || (v.amount_max == 'undefined' && loanAmount >= v.amount_min)) {
+                  console.log();
+                  if((v.amount_max == 'undefined' && loanAmount >= v.amount_min)
+                      || (v.amount_min == 'undefined' && loanAmount <= v.amount_max)
+                      || (loanAmount >= v.amount_min && loanAmount <= v.amount_max)) {
                         //console.log(v.rate, k);
                         x = v.rate;
                   }
@@ -253,6 +270,8 @@ angular.module('app')
     var ref = new Firebase(FirebaseUrl);
     console.log($scope.authData);
 
+    var refUser = new Firebase(FirebaseUrl+'/compare/user_data');
+
     $scope.login = function(){
       ref.authWithPassword({
         email    : $scope.email,
@@ -268,8 +287,6 @@ angular.module('app')
         }
       });
     }
-
-    var refUser = new Firebase(FirebaseUrl+'/user_data');
 
     var $load = $('<div align="center"><h1>Loading...</h1></div>').appendTo('main-list');
     refUser.on('value', function () {
