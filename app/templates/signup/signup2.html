@@ -1,0 +1,127 @@
+<div class="step-counter">
+    <h4 class="title">Step 2 of 3 </h4>
+    <div class="progress">
+        <div class="progress-bar step2"></div>
+    </div>
+</div>
+<form ng-submit="submitData()" name="form">
+    <div class="form-signup-info">
+        <div class="item col-2">
+            <div>
+                <h4 class="title blue-title">อายุ</h4>
+                <input type="number" class="input-info" ng-model="signup.age" value="18">
+            </div>
+        </div>
+        <div class="item col-3">
+            <div class="require">
+                <h4 class="title blue-title">ที่อยู่ปัจจุบัน - รหัสไปรษณีย์</h4>
+                <input type="text" class="input-info" ng-model="signup.zip_code" value="" required>
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">อำเภอ/เขต</h4>
+                <input type="text" class="input-info" ng-model="signup.amphur" value="" required>
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">จังหวัด</h4>
+                <input type="text" class="input-info" ng-model="signup.province" value="" required>
+            </div>
+        </div>
+
+        <div class="item col-1">
+            <div class="require">
+                <h4 class="title blue-title">ชื่อบริษัท</h4>
+                <input type="text" class="input-info" ng-model="signup.company">
+            </div>
+        </div>
+        <div class="item col-2">
+            <div>
+                <h4 class="title blue-title">ประเภทธุรกิจ</h4>
+                <input type="text" class="input-info" ng-model="signup.businessType" value="">
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">อาชีพ</h4>
+                <select class="input-info" ng-model="signup.career" required>
+                    <option value="">กรุณาเลือก</option>
+                    <option>พนักงานบริษัทมหาชน</option>
+                    <option>พนักงานบริษัทขนาดใหญ่ (พนักงานมากกว่า 200 คน)</option>
+                    <option>พนักงานบริษัทขนาดเล็ก (พนักงานน้อยกว่า 200 คน)</option>
+                    <option>ข้าราชการ/รัฐวิสาหกิจ</option>
+                    <option>เจ้าของกิจการ</option>
+                    <option>อาชีพอิสระ</option>
+                    <option>พนักงานรับจ้างรายวัน</option>
+                    <option>ผู้มีรายได้หลักจากคอมมิชชั่น</option>
+                </select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">ตำแหน่ง</h4>
+                <input type="text" class="input-info" ng-model="signup.position">
+            </div>
+        </div>
+        <div class="item col-1">
+            <div class="require">
+                <!-- <h4 class="title blue-title"> ฐานเงินเดือน(บาท/เดือน)</h4> -->
+                <h4 class="title blue-title" ng-hide="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">ฐานเงินเดือน (บาท/เดือน)</h4>
+                <h4 class="title blue-title" ng-show="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">ยอดขายต่อเดือนเฉลี่ย 6 เดือนล่าสุด (บาท/เดือน)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="signup.baseIncome" required>
+            </div>
+        </div>
+        <div class="item col-1" ng-hide="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">
+            <div>
+                <h4 class="title blue-title"> ค่าตำแหน่ง, ค่าครองชีพ, ค่าวิชาชีพ, รายได้อื่นๆที่เท่ากันทุกเดือน (บาท/เดือน)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="signup.positionIncome">
+            </div>
+        </div>
+        <div class="item col-1" ng-hide="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">
+            <div>
+                <h4 class="title blue-title"> ค่าคอมมิชชั่น, ค่าโอที, ค่าเซอร์วิซชาร์จ, รายได้อื่นๆที่ไม่เท่ากันทุกเดือน (บาท/เดือน)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="signup.commission">
+            </div>
+        </div>
+        <div class="item col-1" ng-show="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">
+            <div>
+                <!-- <h4 class="title blue-title"> ฐานเงินเดือน(บาท/เดือน)</h4> -->
+                <h4 class="title blue-title">ยอดเงินฝากในบัญชีธนาคารต่อเดือนเฉลี่ย 6 เดือนล่าสุด (บาท/เดือน)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="signup.deposit">
+            </div>
+        </div>
+        <div class="item col-1" ng-show="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">
+            <div>
+                <!-- <h4 class="title blue-title"> ฐานเงินเดือน(บาท/เดือน)</h4> -->
+                <h4 class="title blue-title">กำไรของกิจการต่อเดือน (บาท)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="signup.profit">
+            </div>
+        </div>
+        <div class="item col-1" ng-hide="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">
+            <div>
+                <h4 class="title blue-title"> ช่องทางรับเงินเดือน</h4>
+                <select class="input-info" ng-model="signup.received" ng-required="signup.career != 'เจ้าของกิจการ' && signup.career != 'อาชีพอิสระ'">
+                    <option value="">กรุณาเลือก</option>
+					<option>โอนเข้าบัญชี</option>
+                    <option>เงินสด/เช็ค</option>
+				</select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div class="require">
+                <h4 class="title blue-title" ng-hide="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">อายุงาน</h4>
+                <h4 class="title blue-title" ng-show="signup.career == 'เจ้าของกิจการ' || signup.career == 'อาชีพอิสระ'">อายุกิจการ</h4>
+                <!-- <input width="30%" type="text" class="input-info" ng-model="workHistory.serviceYear.year" value="10"> ปี -->
+                <!-- <div class="form-info offer"> -->
+                <div class="col-lg-4">
+                    <input type="number" class="input-info border" ng-model="signup.serviceYear.year" placeholder="ปี" required>
+                </div>
+                <div class="col-lg-5">
+                    <input type="number" class="input-info border" ng-model="signup.serviceYear.month" placeholder="เดือน">
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
+
+    </div>
+    <div class="info-button text-right">
+        <button type="button" class="btn btn-lg bg-white" ng-click="backToPrevious()">ย้อนกลับ</button>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">ต่อไป</button>
+    </div>
+</form>

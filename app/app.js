@@ -2,34 +2,28 @@
 
 // Declare app level module which depends on views, and components
 angular.module('app', [
-  'ngRoute',
-  'firebase',
-  'dynamicNumber',
-  'tabs',
-  'sticky',
-  'ui.checkbox',
-  'ngOrderObjectBy'
-])
-.config(['$routeProvider', function($routeProvider) {
-	$routeProvider
-        // .when('/clients',{
-        //     templateUrl: '/clients.html',
-        //     resolve: {
-	       //      auth: function(Auth, $location){
-		      //       return Auth.auth.$requireAuth().catch(function(){
-		      //       	console.log('test');
-		      //         $location.path( "/signin" );
-		      //       });
-		      //    }
-      		// }
-        // })
-        .when('/clients',{
-            templateUrl: 'clients.html',
-        })
-        .otherwise({redirectTo: '/'});
-}])
+        'ngRoute',
+        'firebase',
+        'dynamicNumber',
+        'tabs',
+        'sticky',
+        'ui.checkbox',
+        'ngOrderObjectBy'
+    ])
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: 'compare.html',
+            })
+            .when('/signup', {
+                templateUrl: 'signup.html',
+            })
+            .otherwise({
+                redirectTo: '/'
+            });
+    }])
 
-.constant('FirebaseUrl', "https://aborrow.firebaseio.com/")
+.constant('FirebaseUrl', "https://aborrow-test.firebaseio.com/")
 
 
 // .filter('orderObjectBy', function(){

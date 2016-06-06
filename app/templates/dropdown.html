@@ -1,0 +1,14 @@
+<div class="dropdown-container" ng-class="{ show: listVisible }">
+    <div class="dropdown-display">
+        <input type="text" class="form-control" id="{{id}}" value="{{selectedText}}" readonly placeholder="{{placeholder}}" />
+        <i class="fa fa-angle-down"></i>
+    </div>
+    <div class="dropdown-list">
+        <div>
+            <div ng-repeat="item in items" ng-click="select(item)" ng-class="{ selected: isSelected(item) }">
+                <span>{{property !== undefined ? item.text : item}}</span>
+                <i class="fa fa-check"></i>
+            </div>
+        </div>
+    </div>
+</div>
