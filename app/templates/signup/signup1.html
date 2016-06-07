@@ -1,0 +1,87 @@
+<div class="step-counter">
+    <h4 class="title">Step 1 of 3 </h4>
+    <div class="progress">
+        <div class="progress-bar step1"></div>
+    </div>
+</div>
+<form ng-submit="submitData()" name="form">
+    <div class="form-signup-info">
+        <div class="item col-2">
+            <div class="require">
+                <h4 class="title blue-title">คำนำหน้าชื่อ</h4>
+                <select class="input-info" ng-model="signup.gender" required>
+                    <option value="">กรุณาเลือก</option>
+                    <option>นาย</option>
+                    <option>นาง</option>
+                    <option>นางสาว</option>
+                    <option>อื่นๆ</option>
+                </select>
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">โทรศัพท์มือถือ</h4>
+                <input type="tel" class="input-info" ng-model="signup.mobileNumber" value="0867768894" required>
+            </div>
+        </div>
+        <div class="item col-2">
+            <div class="require">
+                <h4 class="title blue-title">ชื่อจริง</h4>
+                <input type="text" class="input-info" ng-model="signup.name" value="จอห์น" required />
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">นามสกุล</h4>
+                <input type="text" class="input-info" ng-model="signup.surname" value="โด" required />
+            </div>
+        </div>
+        <div class="item col-2">
+            <div class="require">
+                <h4 class="title blue-title">Email  
+                    <span class="error-message" ng-if="form.email.$invalid && form.email.$touched">
+                        กรอก email ให้ถูกต้อง
+                    </span>
+                </h4>
+                <input type="email" class="input-info" name="email" ng-model="signup.email" value="" required>
+            </div>
+            <div class="require">
+                <h4 class="title blue-title">Password</h4>
+                <input type="password" class="input-info" ng-model="signup.password" value="" required>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div class="require">
+                <h4 class="title blue-title">ต้องการ</h4>
+                <select class="input-info" ng-model="loan_type" autocomplete="off">
+                    <option value="" ng-selected="true">กรุณาเลือกประเภทสินเชื่อ</option>
+                    <option value="loan">เงินสด</option>
+                    <option value="house">บ้าน</option>
+                    <option value="car">รถ</option>
+                </select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div class="require">
+                <h4 class="title blue-title">วงเงินกู้ (บาท)</h4>
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
+            </div>
+        </div>
+        <div class="item col-1">
+            <div class="require">
+                <h4 class="title blue-title">ระยะเวลากู้ (เดือน)</h4>
+                <select class="input-info" ng-model="loanTerm" autocomplete="off">
+                    <option value="0" ng-selected="true">กรุณาเลือกระยะเวลาการกู้ (เดือน)</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                    <option value="72">72</option>
+                    <option value="84">84</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="info-button text-right">
+        <a href="#/" class="btn btn-lg bg-white">ย้อนกลับ</a>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">ต่อไป</button>
+    </div>
+</form>

@@ -1,0 +1,90 @@
+<div class="step-counter">
+    <h4 class="title">Step 3 of 3 </h4>
+    <div class="progress">
+        <div class="progress-bar step3"></div>
+    </div>
+</div>
+<form ng-submit="submitData()" name="form">
+    <div class="form-signup-info">
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">ยอดเงินผ่อนชำระบ้าน (บาท/เดือน)</h4>
+                <input type="text" class="input-info" ng-model="signup.house_mortgage" value="30000">
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">ยอดเงินผ่อนชำระรถยนต์/รถจักรยานยนต์ (บาท/เดือน)</h4>
+                <input type="text" class="input-info" ng-model="signup.car_mortgage" value="30000">
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">ยอดหนี้บัตรเครดิต/สินเชื่ออื่นๆ (บาท)</h4>
+                <input type="text" class="input-info" ng-model="signup.pl" value="30000">
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">จำนวนหนี้ค้างชำระ (บัญชี)</h4>
+                <select class="input-info" ng-model="signup.delinquency">
+                    <option value="">กรุณาเลือก</option>
+					<option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>มากกว่า 3 บัญชี</option>
+				</select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">ประวัติการปรับโครงสร้างหนี้  ในรอบ 3 ปีที่ผ่านมา</h4>
+                <select class="input-info" ng-model="signup.restructure">
+                    <option value="">กรุณาเลือก</option>
+                    <option>ไม่มี</option>
+                    <option>มี ช่วง 6 เดือนที่ผ่านมา</option>
+                    <option>มี ช่วง 6 - 12 เดือนที่ผ่านมา</option>
+                    <option>มี ช่วง 1 - 2 ปีที่ผ่านมา มี ช่วง 2 - 3 ปีที่ผ่านมา</option>
+                </select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">จำนวนเดือนที่ชำระหนี้ล่าช้า 6 เดือนล่าสุด (เดือน)</h4>
+                <select class="input-info" ng-model="signup.latepayment">
+                    <option value="">กรุณาเลือก</option>
+					<option>จ่ายตรงเวลาตลอดในรอบ 6 เดือน</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+				</select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">อายุบัตรเครดิตใบแรกและที่ยังใช้อยู่ (ปี)</h4>
+                <select class="input-info" ng-model="signup.firstcard">
+                    <option value="">กรุณาเลือก</option>
+                    <option>ไม่ใช้บัตรเครดิต</option>
+					<option>น้อยกว่า 1 ปี</option>
+                    <option>1 - 2 ปี</option>
+                    <option>2 - 3 ปี</option>
+                    <option>มากว่า 3 ปี</option>
+				</select>
+            </div>
+        </div>
+        <div class="item col-1">
+            <div>
+                <h4 class="title blue-title">คำอธิบายเพิ่มเติม</h4>
+                <input type="text" class="input-info" ng-model="signup.moreExplanation" value="30000">
+            </div>
+        </div>
+    </div>
+    <div class="info-button text-right">
+        <button type="button" class="btn btn-lg bg-white" ng-click="backToPrevious()">ย้อนกลับ</button>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">ต่อไป</button>
+    </div>
+</form>
