@@ -905,7 +905,7 @@ p {
     height: 80px;
     background-color: #f3f3f3;
     z-index: 1;
-    width: 100%;
+    width: 100% !important;
 }
 
 .flex-container {
@@ -918,12 +918,16 @@ p {
     margin-right: 10px;
 }
 
-#app-btn {
-    margin-left: 20px;
+.flex3 {
+    flex-grow: 3;
 }
 
+.flex1 {
+    flex-grow: 1;
+}
+
+.contact-btn,
 .app-btn {
-    background-color: #2ea3f2;
     font-size: 20px;
     width: 120px;
 }

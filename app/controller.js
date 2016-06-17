@@ -89,13 +89,14 @@ angular.module('app')
     ]
     $scope.templateUrl = $scope.templateUrls[0];
 
-    $scope.signup = {};
-    $scope.signup.loan_type = "";
-    $scope.signup.loanAmount = "";
-    $scope.signup.loanTerm = "";
-    $scope.signup.occupation = "";
-    $scope.signup.salary = "";
-    $scope.signup.work_exp = "";
+    $scope.user = {};
+    $scope.compare = {};
+    $scope.compare.loan_type = "";
+    $scope.compare.loanAmount = "";
+    $scope.compare.loanTerm = "";
+    $scope.compare.occupation = "";
+    $scope.compare.salary = "";
+    $scope.compare.work_exp = "";
     // $scope.allLoans = $firebaseObject(refLoans);
     // $scope.allCards = $firebaseObject(refCards);
     // var refUser = new Firebase(FirebaseUrl+'/user_data');
@@ -117,41 +118,41 @@ angular.module('app')
 
     function findNextFocus(event) {
         if (event != null && (event.target.id === "loanAmount" || event.target.id === "salary" || event.target.id === "work_exp")) {
-            if (event.target.id === "loanAmount" && $scope.signup.loanAmount === "") {
+            if (event.target.id === "loanAmount" && $scope.compare.loanAmount === "") {
                 $scope.focused = true;
-            } else if (event.target.id === "salary" && $scope.signup.salary === "") {
+            } else if (event.target.id === "salary" && $scope.compare.salary === "") {
                 $scope.focused = true;
-            } else if (event.target.id === "work_exp" && $scope.signup.work_exp === "") {
+            } else if (event.target.id === "work_exp" && $scope.compare.work_exp === "") {
                 $scope.focused = true;
             }
         }
         if ($scope.inputStep == 0) {
-            if ($scope.signup.loan_type !== "") {
+            if ($scope.compare.loan_type !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
         if ($scope.inputStep == 1) {
-            if ($scope.signup.loanAmount !== "") {
+            if ($scope.compare.loanAmount !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
         if ($scope.inputStep == 2) {
-            if ($scope.signup.loanTerm !== "") {
+            if ($scope.compare.loanTerm !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
         if ($scope.inputStep == 3) {
-            if ($scope.signup.occupation !== "") {
+            if ($scope.compare.occupation !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
         if ($scope.inputStep == 4) {
-            if ($scope.signup.salary !== "") {
+            if ($scope.compare.salary !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
         if ($scope.inputStep == 5) {
-            if ($scope.signup.work_exp !== "") {
+            if ($scope.compare.work_exp !== "") {
                 $scope.inputStep = $scope.inputStep + 1;
             }
         }
@@ -170,9 +171,13 @@ angular.module('app')
 
     $scope.submitData = function() {
         $scope.step = $scope.step + 1;
-        if ($scope.step <= 3) {
+        if ($scope.step < 3) {
             $scope.templateUrl = $scope.templateUrls[$scope.step];
         }
+        if ($scope.step == 3) {
+            $scope.saveUserData();
+        }
+
 
     }
     $scope.backToPrevious = function() {
@@ -262,18 +267,18 @@ angular.module('app')
         //console.log($scope.selected);
         var data = {
             user: $scope.user,
-            loan_type: $scope.loan_type,
-            occupation: $scope.occupation,
-            salary: $scope.salary,
-            work_exp: $scope.work_exp,
-            loanTerm: $scope.loanTerm,
-            loanAmount: $scope.loanAmount,
-            selectedLoans: $scope.selected,
+            loan_type: $scope.compare.loan_type,
+            occupation: $scope.compare.occupation,
+            salary: $scope.compare.salary,
+            work_exp: $scope.compare.work_exp,
+            loanTerm: $scope.compare.loanTerm,
+            loanAmount: $scope.compare.loanAmount,
             date: new Date().toString()
         };
         console.log(data);
         var dataRef = new Firebase(FirebaseUrl + "/compare/user_data");
         dataRef.push(angular.copy(data)); //not yet tested
+
         // dataRef.push(JSON.parse(data)); //not yet tested
         // $http({
         //         // headers:{
@@ -316,7 +321,7 @@ angular.module('app')
         //             console.log(res);  
         // });
         alert("เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด");
-        window.location.reload();
+        //window.location.reload();
     }
 
     //   $scope.sendMail = function(a){

@@ -9,25 +9,25 @@
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">ยอดเงินผ่อนชำระบ้าน (บาท/เดือน)</h4>
-                <input type="text" class="input-info" ng-model="signup.house_mortgage" value="30000">
+                <input type="text" class="input-info" ng-model="user.house_mortgage" value="30000">
             </div>
         </div>
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">ยอดเงินผ่อนชำระรถยนต์/รถจักรยานยนต์ (บาท/เดือน)</h4>
-                <input type="text" class="input-info" ng-model="signup.car_mortgage" value="30000">
+                <input type="text" class="input-info" ng-model="user.car_mortgage" value="30000">
             </div>
         </div>
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">ยอดหนี้บัตรเครดิต/สินเชื่ออื่นๆ (บาท)</h4>
-                <input type="text" class="input-info" ng-model="signup.pl" value="30000">
+                <input type="text" class="input-info" ng-model="user.pl" value="30000">
             </div>
         </div>
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">จำนวนหนี้ค้างชำระ (บัญชี)</h4>
-                <select class="input-info" ng-model="signup.delinquency">
+                <select class="input-info" ng-model="user.delinquency">
                     <option value="">กรุณาเลือก</option>
 					<option>0</option>
                     <option>1</option>
@@ -39,7 +39,7 @@
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">ประวัติการปรับโครงสร้างหนี้  ในรอบ 3 ปีที่ผ่านมา</h4>
-                <select class="input-info" ng-model="signup.restructure">
+                <select class="input-info" ng-model="user.restructure">
                     <option value="">กรุณาเลือก</option>
                     <option>ไม่มี</option>
                     <option>มี ช่วง 6 เดือนที่ผ่านมา</option>
@@ -51,7 +51,7 @@
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">จำนวนเดือนที่ชำระหนี้ล่าช้า 6 เดือนล่าสุด (เดือน)</h4>
-                <select class="input-info" ng-model="signup.latepayment">
+                <select class="input-info" ng-model="user.latepayment">
                     <option value="">กรุณาเลือก</option>
 					<option>จ่ายตรงเวลาตลอดในรอบ 6 เดือน</option>
                     <option>1</option>
@@ -66,7 +66,7 @@
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">อายุบัตรเครดิตใบแรกและที่ยังใช้อยู่ (ปี)</h4>
-                <select class="input-info" ng-model="signup.firstcard">
+                <select class="input-info" ng-model="user.firstcard">
                     <option value="">กรุณาเลือก</option>
                     <option>ไม่ใช้บัตรเครดิต</option>
 					<option>น้อยกว่า 1 ปี</option>
@@ -79,12 +79,12 @@
         <div class="item col-1">
             <div>
                 <h4 class="title blue-title">คำอธิบายเพิ่มเติม</h4>
-                <input type="text" class="input-info" ng-model="signup.moreExplanation" value="30000">
+                <input type="text" class="input-info" ng-model="user.moreExplanation" value="30000">
             </div>
         </div>
     </div>
     <div class="info-button text-right">
         <button type="button" class="btn btn-lg bg-white" ng-click="backToPrevious()">ย้อนกลับ</button>
-        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">ต่อไป</button>
+        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">เสร็จสิ้น</button>
     </div>
 </form>

@@ -1,16 +1,13 @@
 dropdown {
-    float: left;
     display: block;
     width: 100%;
 }
 
 dropdown > div {
-    float: left;
     width: 100%;
 }
 
 dropdown > div > div.dropdown-display {
-    float: left;
     width: 100%;
     background: white;
     height: 34px;

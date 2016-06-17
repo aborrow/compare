@@ -34,13 +34,13 @@ angular.module('app')
                     }
                 };
 
-                scope.select = function(item) {
+                scope.select = function(event, item) {
                     clicked = true;
                     scope.ngModel = scope.property !== undefined ? item.value : item;;
                     scope.selectedText = scope.property !== undefined ? item.text : item;
                     scope.listVisible = false;
                     isHover = false;
-                    scope.selected();
+                    scope.selected(event);
 
                 };
                 element.find(".dropdown-list").bind('mouseenter mouseover', function(e) {

@@ -9,7 +9,7 @@
         <div class="item col-2">
             <div class="require">
                 <h4 class="title blue-title">คำนำหน้าชื่อ</h4>
-                <select class="input-info" ng-model="signup.gender" required>
+                <select class="input-info" ng-model="user.gender" required>
                     <option value="">กรุณาเลือก</option>
                     <option>นาย</option>
                     <option>นาง</option>
@@ -19,17 +19,17 @@
             </div>
             <div class="require">
                 <h4 class="title blue-title">โทรศัพท์มือถือ</h4>
-                <input type="tel" class="input-info" ng-model="signup.mobileNumber" value="0867768894" required>
+                <input type="tel" class="input-info" ng-model="user.mobileNumber" value="0867768894" required>
             </div>
         </div>
         <div class="item col-2">
             <div class="require">
                 <h4 class="title blue-title">ชื่อจริง</h4>
-                <input type="text" class="input-info" ng-model="signup.name" value="จอห์น" required />
+                <input type="text" class="input-info" ng-model="user.name" value="จอห์น" required />
             </div>
             <div class="require">
                 <h4 class="title blue-title">นามสกุล</h4>
-                <input type="text" class="input-info" ng-model="signup.surname" value="โด" required />
+                <input type="text" class="input-info" ng-model="user.surname" value="โด" required />
             </div>
         </div>
         <div class="item col-2">
@@ -39,18 +39,18 @@
                         กรอก email ให้ถูกต้อง
                     </span>
                 </h4>
-                <input type="email" class="input-info" name="email" ng-model="signup.email" value="" required>
+                <input type="email" class="input-info" name="email" ng-model="user.email" value="" required>
             </div>
             <div class="require">
                 <h4 class="title blue-title">Password</h4>
-                <input type="password" class="input-info" ng-model="signup.password" value="" required>
+                <input type="password" class="input-info" ng-model="user.password" value="" required>
             </div>
         </div>
         <div class="item col-1">
             <div class="require">
                 <h4 class="title blue-title">ต้องการ</h4>
-                <select class="input-info" ng-model="loan_type" autocomplete="off">
-                    <option value="" ng-selected="true">กรุณาเลือกประเภทสินเชื่อ</option>
+                <select class="input-info" ng-model="compare.loan_type" autocomplete="off">
+                    <option value="">กรุณาเลือกประเภทสินเชื่อ</option>
                     <option value="loan">เงินสด</option>
                     <option value="house">บ้าน</option>
                     <option value="car">รถ</option>
@@ -60,13 +60,13 @@
         <div class="item col-1">
             <div class="require">
                 <h4 class="title blue-title">วงเงินกู้ (บาท)</h4>
-                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
+                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="compare.loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
             </div>
         </div>
         <div class="item col-1">
             <div class="require">
                 <h4 class="title blue-title">ระยะเวลากู้ (เดือน)</h4>
-                <select class="input-info" ng-model="loanTerm" autocomplete="off">
+                <select class="input-info" ng-model="compare.loanTerm" autocomplete="off">
                     <option value="0" ng-selected="true">กรุณาเลือกระยะเวลาการกู้ (เดือน)</option>
                     <option value="12">12</option>
                     <option value="24">24</option>

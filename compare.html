@@ -10,29 +10,29 @@
                                 <div class="item col-3">
                                     <div>
                                         <h4 class="title blue-title">ต้องการ</h4>
-                                        <dropdown placeholder="กรุณาเลือกประเภทสินเชื่อ" ng-model="signup.loan_type" name="loanSelect" items="loanTypes" selected="focusNext($event)" property="value"></dropdown>
+                                        <dropdown placeholder="กรุณาเลือกประเภทสินเชื่อ" ng-model="compare.loan_type" name="loanSelect" items="loanTypes" selected="focusNext($event)" property="value"></dropdown>
                                     </div>
                                     <div>
                                         <h4 class="title blue-title">วงเงินกู้</h4>
-                                        <input awnum num-thousand="true" num-int="8" type="text" class="form-control" id="loanAmount" ng-blur="focusNext($event)" ng-model="signup.loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
+                                        <input awnum num-thousand="true" num-int="8" type="text" class="form-control" id="loanAmount" ng-blur="focusNext($event)" ng-model="compare.loanAmount" placeholder="วงเงินที่ต้องการกู้ (บาท)">
                                     </div>
                                     <div>
                                         <h4 class="title blue-title">ระยะเวลาการกู้ (เดือน)</h4>
-                                        <dropdown placeholder="กรุณาเลือกระยะเวลาการกู้ (เดือน)" ng-model="signup.loanTerm" name="loanTerm" selected="focusNext($event)" items="[12,24,36,48,60,72]"></dropdown>
+                                        <dropdown placeholder="กรุณาเลือกระยะเวลาการกู้ (เดือน)" ng-model="compare.loanTerm" name="loanTerm" selected="focusNext($event)" items="[12,24,36,48,60,72]"></dropdown>
                                     </div>
                                 </div>
                                 <div class="item col-3">
                                     <div>
                                         <h4 class="title blue-title">อาชีพ</h4>
-                                        <dropdown placeholder="กรุณาเลือกอาชีพ" ng-model="signup.occupation" name="occupation" items="occupations" selected="focusNext($event)" property="value"></dropdown>
+                                        <dropdown placeholder="กรุณาเลือกอาชีพ" ng-model="compare.occupation" name="occupation" items="occupations" selected="focusNext($event)" property="value"></dropdown>
                                     </div>
                                     <div>
                                         <h4 class="title blue-title">รายได้ต่อเดือน(บาท)</h4>
-                                        <input awnum num-thousand="true" num-int="8" ng-model="signup.salary" id="salary" type="text" ng-blur="focusNext($event)" class="form-control" placeholder="รายได้ต่อเดือน  (บาท)">
+                                        <input awnum num-thousand="true" num-int="8" ng-model="compare.salary" id="salary" type="text" ng-blur="focusNext($event)" class="form-control" placeholder="รายได้ต่อเดือน  (บาท)">
                                     </div>
                                     <div>
                                         <h4 class="title blue-title">อายุงาน(เดือน)</h4>
-                                        <input ng-model="signup.work_exp" type="text" class="form-control" id="work_exp" placeholder="อายุงาน (เดือน)">
+                                        <input ng-model="compare.work_exp" type="text" class="form-control" id="work_exp" placeholder="อายุงาน (เดือน)">
                                     </div>
                                 </div>
                             </div>
@@ -51,16 +51,16 @@
         <div class="logo-mini">
             <img src="assets/img/aborrow-mini.png">
         </div>
-        <div>
+        <div class="flex3">
             <h1>สินเชื่อที่ดีที่สุดสำหรับคุณวันนี้</h1>
         </div>
-        <a href="#/signup" id="app-btn" class="btn btn-primary app-btn">สมัครเลย</a>
+        <a href="#/signup" id="app-btn" class="btn btn-success app-btn flex1">สมัครเลย</a>
     </div>
 </section>
 <section class="offer-body">
     <div class="container">
         <div class="col-md-10">
-            <div class="list-compare" ng-repeat="loan in refreshData(signup.loan_type, signup.occupation,signup.salary,signup.work_exp,signup.loanTerm, signup.loanAmount) | orderBy:['preciseInt','interest.max','interest.min']" ng-cloak>
+            <div class="list-compare" ng-repeat="loan in refreshData(compare.loan_type, compare.occupation,compare.salary,compare.work_exp,compare.loanTerm, compare.loanAmount) | orderBy:['preciseInt','interest.max','interest.min']" ng-cloak>
                 <div class="compare-item">
                     <div class="padding">
                         <div class="row" style="margin-bottom: 0px;" vertical-align="middle">
@@ -85,7 +85,7 @@
 
                             <div class="col-lg-2">
                                 <!-- <h1 class="number" ng-if="currentTab==1">{{calLoanAmount(monthlyPmt, loanTerm, loan.interest.max) | number:0 }}</h1> -->
-                                <h4 class="number">{{loanAmount | number:0 }}</h4>
+                                <h4 class="number">{{compare.loanAmount | number:0 }}</h4>
                                 <p class="desc">จำนวนเงินกู้ที่เสนอ</p>
                                 <!-- <p class="desc">{{loan.amount.remarks}}</p> -->
                             </div>
@@ -95,12 +95,12 @@
                                 <h4 ng-show="loan.preciseInt" class="number">{{loan.preciseInt | number:0 }}%</h4>
                                 <p class="desc">อัตราดอกเบี้ย</p>
                             </div>
-                            <div ng-hide="signup.loan_type=='card'" class="col-lg-2">
-                                <h4 class="number" ng-show="!loan.monthlyRepayment">{{calRepayment(loanAmount, loanTerm, loan.interest.max) | number:0}}</h4>
+                            <div ng-hide="compare.loan_type=='card'" class="col-lg-2">
+                                <h4 class="number" ng-show="!loan.monthlyRepayment">{{calRepayment(compare.loanAmount, compare.loanTerm, loan.interest.max) | number:0}}</h4>
                                 <h4 class="number" ng-show="loan.monthlyRepayment">{{loan.monthlyRepayment | number:0}}</h4>
                                 <p class="desc">ยอดผ่อนชำระต่อเดือน</p>
                             </div>
-                            <div ng-show="signup.loan_type=='card'" class="col-lg-2">
+                            <div ng-show="compare.loan_type=='card'" class="col-lg-2">
                                 <h4 class="number">{{loan.minimum_repay.rate | number:0}}%</h4>
                                 <p>{{loan.minimum_repay.remarks}}</p>
                                 <p class="desc">ชำระคืนขั้นต่ำของยอดที่ใช้ต่อเดือน</p>
@@ -117,11 +117,11 @@
                     <div class="expand-info">
                         <div class="tab-content">
                             <div class="button">
-                                <a width="20%" class="btn -loandetailsub selected" href="#info{{loan.eng_name}}" role="tab" data-toggle="tab">ข้อมูลสินเชื่อ</a>
-                                <a width="20%" class="btn -loandetailsub" href="#qualification{{loan.eng_name}}" role="tab" data-toggle="tab">คุณสมบัติผู้สมัคร</a>
-                                <a width="20%" class="btn -loandetailsub" href="#docs{{loan.eng_name}}" role="tab" data-toggle="tab">เอกสารประกอบ</a>
-                                <a width="20%" class="btn -loandetailsub" href="#fees{{loan.eng_name}}" role="tab" data-toggle="tab">ค่าธรรมเนียม</a>
-                                <a width="20%" class="btn -loandetailsub" href="#payment{{loan.eng_name}}" role="tab" data-toggle="tab">ช่องทางการชำระเงิน</a>
+                                <a width="20%" class="btn -loandetailsub selected" data-target="#info{{loan.eng_name}}" role="tab" data-toggle="tab">ข้อมูลสินเชื่อ</a>
+                                <a width="20%" class="btn -loandetailsub" data-target="#qualification{{loan.eng_name}}" role="tab" data-toggle="tab">คุณสมบัติผู้สมัคร</a>
+                                <a width="20%" class="btn -loandetailsub" data-target="#docs{{loan.eng_name}}" role="tab" data-toggle="tab">เอกสารประกอบ</a>
+                                <a width="20%" class="btn -loandetailsub" data-target="#fees{{loan.eng_name}}" role="tab" data-toggle="tab">ค่าธรรมเนียม</a>
+                                <a width="20%" class="btn -loandetailsub" data-target="#payment{{loan.eng_name}}" role="tab" data-toggle="tab">ช่องทางการชำระเงิน</a>
                             </div>
                             <div role="tabpanel" class="tab-pane active" id="info{{loan.eng_name}}">
                                 <div class="padding">
@@ -177,11 +177,11 @@
                                     {{loan.amount.remarks}}
                                     </td>
                                 </tr> -->
-                                        <tr ng-show="signup.loan_type=='loan'">
+                                        <tr ng-show="compare.loan_type=='loan'">
                                             <td width="50%" style="vertical-align:middle;">ระยะเวลากู้ (เดือน)</td>
                                             <td width="50%">{{loan.term.min}} - {{loan.term.max}} เดือน</td>
                                         </tr>
-                                        <tr ng-show="signup.loan_type=='card'">
+                                        <tr ng-show="compare.loan_type=='card'">
                                             <td width="50%" style="vertical-align:middle;">ชำระคืนขั้นต่ำของยอดที่ใช้ต่อเดือน</td>
                                             <td width="50%">
                                                 {{loan.minimum_repay.rate | number:0}}%
@@ -229,31 +229,31 @@
                                     <table class="table">
                                         <tr>
                                             <td width="50%">อาชีพ</td>
-                                            <td width="50%">{{loan.qualifications[occupation].occupation}}</td>
+                                            <td width="50%">{{loan.qualifications[compare.occupation].occupation}}</td>
                                         </tr>
                                         <tr>
                                             <td width="50%">รายได้ขั้นต่ำ</td>
-                                            <td width="50%">{{loan.qualifications[occupation].min_salary | number:0}} บาท</td>
+                                            <td width="50%">{{loan.qualifications[compare.occupation].min_salary | number:0}} บาท</td>
                                         </tr>
                                         <tr>
                                             <td width="50%" style="vertical-align:middle;">อายุผู้ขอกู้</td>
                                             <td width="50%">
-                                                <!-- {{loan.qualifications[occupation].min_age}} - {{loan.qualifications[occupation].max_age}} ปี -->
+                                                <!-- {{loan.qualifications[compare.occupation].min_age}} - {{loan.qualifications[compare.occupation].max_age}} ปี -->
                                                 <table class="table">
-                                                    <tr ng-show="loan.qualifications[occupation].min_age>0">
+                                                    <tr ng-show="loan.qualifications[compare.occupation].min_age>0">
                                                         <td style="border-top:none;">
                                                             เริ่มต้น:
                                                         </td>
                                                         <td style="border-top:none;">
-                                                            {{loan.qualifications[occupation].min_age | number:0 }} ปี
+                                                            {{loan.qualifications[compare.occupation].min_age | number:0 }} ปี
                                                         </td>
                                                     </tr>
-                                                    <tr ng-show="loan.qualifications[occupation].max_age>0">
+                                                    <tr ng-show="loan.qualifications[compare.occupation].max_age>0">
                                                         <td style="border-top:none;">
                                                             สูงสุด:
                                                         </td>
                                                         <td style="border-top:none;">
-                                                            {{loan.qualifications[occupation].max_age | number:0 }} ปี
+                                                            {{loan.qualifications[compare.occupation].max_age | number:0 }} ปี
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -261,11 +261,11 @@
                                         </tr>
                                         <tr>
                                             <td width="50%">อายุงาน</td>
-                                            <td width="50%">{{loan.qualifications[occupation].min_work_exp}} เดือน</td>
+                                            <td width="50%">{{loan.qualifications[compare.occupation].min_work_exp}} เดือน</td>
                                         </tr>
-                                        <tr ng-show="loan.qualifications[occupation].remarks">
+                                        <tr ng-show="loan.qualifications[compare.occupation].remarks">
                                             <td width="50%">หมายเหตุ</td>
-                                            <td width="50%">{{loan.qualifications[occupation].remarks}}</td>
+                                            <td width="50%">{{loan.qualifications[compare.occupation].remarks}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -275,19 +275,19 @@
                                     <table class="table">
                                         <tr>
                                             <td width="50%" style="vertical-align:middle;">สำเนาบัตรประชาชน</td>
-                                            <td width="50%">{{loan.documents[occupation].official_doc}}</td>
+                                            <td width="50%">{{loan.documents[compare.occupation].official_doc}}</td>
                                         </tr>
                                         <tr>
                                             <td width="50%" style="vertical-align:middle;">เอกสารแสดงรายได้</td>
                                             <td width="50%">
-                                                <ul class="list-unstyled" ng-repeat="d in loan.documents[occupation].fin_doc">
+                                                <ul class="list-unstyled" ng-repeat="d in loan.documents[compare.occupation].fin_doc">
                                                     <li>{{d}}</li>
                                                 </ul>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td width="50%" style="vertical-align:middle;">สำเนาหน้าสมุดบัญชีธนาคาร</td>
-                                            <td width="50%">{{loan.documents[occupation].bank_book}}</td>
+                                            <td width="50%">{{loan.documents[compare.occupation].bank_book}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -389,7 +389,7 @@
             </div>
         </div>
         <div class="col-md-2 app-btn-sidebar">
-            <a href="#/signup" class="btn btn-primary app-btn">สมัครเลย</a>
+            <a href="#/signup" class="btn btn-primary contact-btn">ติดต่อเจ้าหน้าที่</a>
             <h4>เพื่อทราบโอกาสอุนมัติ <br> หลายสถาบันการเงิน</h4>
         </div>
     </div>
