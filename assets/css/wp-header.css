@@ -22,9 +22,9 @@ body {
     background-color: #fff;
     /*z-index: 100;*/
     width: 100%;
-    /*    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);*/
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 #top-header {
@@ -57,47 +57,6 @@ body {
 #contact-info a {
     color: #fff;
     text-decoration: none;
-}
-
-.info-phone,
-.info-email {
-    position: relative;
-}
-
-.info-phone:before,
-.info-email:before,
-.search_icon:before,
-.mobile_menu_bar:before {
-    font-family: "ETmodules" !important;
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    line-height: 1;
-    text-transform: none;
-}
-
-.info-phone {
-    margin-right: 13px;
-}
-
-.info-phone:before {
-    position: relative;
-    top: 2px;
-    margin-right: 5px;
-    content: "\e090";
-    color: #5CB85C;
-}
-
-.info-email:before {
-    margin-right: 4px;
-    content: "\e076";
-}
-
-.fixed-header {
-    position: fixed;
-    top: 0;
 }
 
 #header {
@@ -133,7 +92,6 @@ span.logo_helper {
 
 #logo {
     display: inline-block;
-    max-height: 70%;
     margin-bottom: 0;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
@@ -170,9 +128,10 @@ img {
 
 #top-menu li {
     display: inline-block;
-    padding-right: 22px;
+    padding-right: 10px;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 #top-menu > li:last-child {
@@ -220,11 +179,5 @@ img > span {
     #top-navigation {
         width: 100%;
         text-align: right;
-    }
-    #mobile_nav_menu {
-        display: block;
-    }
-    #top-menu {
-        display: none;
     }
 }

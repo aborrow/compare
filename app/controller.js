@@ -66,37 +66,33 @@ angular.module('app')
         value: "entrepreneur"
     }]
 
-    $scope.loanTypes = [{
-        text: "เงินสด",
-        value: "loan"
-    }, {
-        text: "รถ",
-        value: "car"
-    }, {
-        text: "บ้าน",
-        value: "house"
-    }]
     $scope.$on('$routeChangeSuccess', function(e) {
         focusToElement('loanSelect');
     });
-
+    $scope.templates = {
+        'loan': 'app/templates/loan.html',
+        'card': 'app/templates/card.html'
+    };
 
     $scope.focused = false;
     $scope.step = 0;
-    $scope.templateUrls = ["app/templates/signup/signup1.html",
-        "app/templates/signup/signup2.html",
-        "app/templates/signup/signup3.html"
-    ]
-    $scope.templateUrl = $scope.templateUrls[0];
-
+    $scope.page = 1;
+    $scope.maxPage = 1;
+    $scope.maxValue = 1;
     $scope.user = {};
     $scope.compare = {};
-    $scope.compare.loan_type = "";
+    $scope.compare.loanCount = 0;
+    $scope.compare.loan_type_cal = "installment"
+    $scope.compare.loan_type = "loan";
     $scope.compare.loanAmount = "";
     $scope.compare.loanTerm = "";
     $scope.compare.occupation = "";
     $scope.compare.salary = "";
     $scope.compare.work_exp = "";
+    $scope.compare.monthlyPmt = 0;
+
+    $scope.templateURL = $scope.templates[$scope.compare.loan_type];
+
     // $scope.allLoans = $firebaseObject(refLoans);
     // $scope.allCards = $firebaseObject(refCards);
     // var refUser = new Firebase(FirebaseUrl+'/user_data');
@@ -110,9 +106,11 @@ angular.module('app')
     ];
 
     $scope.focusNext = function(event) {
+        /*
         $timeout(function() {
             findNextFocus(event);
-        }, 400)
+        }, 400);
+        */
     }
 
 
@@ -188,6 +186,31 @@ angular.module('app')
 
     }
 
+    $scope.setLoanType = function(type) {
+        $scope.compare.loan_type = type;
+        $scope.templateURL = $scope.templates[$scope.compare.loan_type];
+
+    }
+
+    $scope.backLoanList = function() {
+        if ($scope.page > 1) {
+            $scope.page -= 1;
+        }
+    }
+
+    $scope.register = function() {
+        if ($scope.selected.length > 0) {
+            $("#registerModal").modal("show");
+        }
+
+    }
+
+    $scope.nextLoanList = function() {
+        if ($scope.page < $scope.maxPage) {
+            $scope.page += 1;
+        }
+    }
+
     $scope.calLoanAmount = function(monthlyPmt, loanTerm, interest) {
         var monthlyInt = interest / 1200;
         return monthlyPmt * ((1 - Math.pow(1 + monthlyInt, -1 * loanTerm)) / monthlyInt);
@@ -202,8 +225,12 @@ angular.module('app')
 
     // console.log($scope.calRepayment(100000, 24, 26));
 
-    $scope.refreshData = function(loan_type, occupation, salary, work_exp, loanTerm, loanAmount) {
+    $scope.refreshData = function(loan_type, occupation, salary, work_exp, loanTerm, loanAmount, page) {
             var filtered = [];
+            work_exp = 24;
+            page = page || 1;
+            var start = (page - 1) * 3;
+            var end = page * 3;
 
             var allLoans = $scope.data[loan_type];
             angular.forEach(allLoans, function(value, key) {
@@ -230,8 +257,18 @@ angular.module('app')
                     filtered.push(obj);
                 }
             });
-            // console.log(filtered);
-            return filtered;
+            $scope.compare.loanCount = filtered.length;
+            $scope.maxPage = filtered.length / 3;
+            var paginatedItems = [];
+            if ($scope.compare.loan_type_cal === "loan") {
+                paginatedItems = _.orderBy(filtered, ['preciseInt', 'interest.max', 'interest.min']).slice(start, end);
+                $scope.maxValue = _.max(_.map(filtered, 'preciseInt'));
+            } else {
+                paginatedItems = _.orderBy(filtered, ['monthlyRepayment', 'preciseInt', 'interest.max', 'interest.min']).slice(start, end);
+                $scope.maxValue = _.max(_.map(filtered, 'monthlyRepayment'));
+            }
+
+            return paginatedItems;
         }
         // console.log($scope.data);
         // $scope.loansByOcc = $filter('filter')($scope.data, {eng_name: 'bay'});
@@ -273,6 +310,7 @@ angular.module('app')
             work_exp: $scope.compare.work_exp,
             loanTerm: $scope.compare.loanTerm,
             loanAmount: $scope.compare.loanAmount,
+            selectedLoans: $scope.selected,
             date: new Date().toString()
         };
         console.log(data);
@@ -321,7 +359,8 @@ angular.module('app')
         //             console.log(res);  
         // });
         alert("เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด");
-        //window.location.reload();
+        $("#registerModal").modal("hide");
+        window.location.reload();
     }
 
     //   $scope.sendMail = function(a){

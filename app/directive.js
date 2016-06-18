@@ -83,4 +83,18 @@ angular.module('app')
             }
 
         }
-    }])
+    }]).directive("chartHeigth", function($timeout) {
+        return {
+            restrict: 'A',
+            scope: {
+                value: '=',
+                max: "=",
+            },
+            link: function(scope, element, attrs) {
+                var heigth = (Number(scope.value) / Number(scope.max)) * 100;
+                heigth = heigth.toFixed(2) + "%";
+                $(element).css('height', heigth);
+            }
+
+        }
+    })

@@ -1,0 +1,185 @@
+<div class="offerList">
+    <div class="form-info">
+        <div class="item col-6">
+            <div>
+                <div class="radio">
+                    <label> ระยะเวลาผ่อน (เดือน)</label>
+                </div>
+            </div>
+            <div>
+                <div class="radio">
+                    <label>
+                                            <input type="radio" name="loan_term" checked value="12"/>
+                                            12
+                                        </label>
+                </div>
+            </div>
+            <div>
+                <div class="radio">
+                    <label>
+                                            <input type="radio" name="loan_term" value="24"/>
+                                                24
+                                            </label>
+                </div>
+            </div>
+            <div>
+                <div class="radio">
+                    <label>
+                                            <input type="radio" name="loan_term" value="36"/>
+                                                36
+                                            </label>
+                </div>
+            </div>
+            <div>
+                <div class="radio">
+                    <label>
+                                            <input type="radio" name="loan_term" value="48"/>
+                                                48
+                                            </label>
+                </div>
+            </div>
+            <div>
+                <div class="radio">
+                    <label>
+                                            <input type="radio" name="loan_term" value="60"/>
+                                                60
+                                            </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p class="loan-title">สินเชื่อเรียงตามยอดผ่อนต่อเดือน</p>
+        <section class="loan-bar-section">
+            <div class="barchart">
+                <a class="backLoan-btn" ng-click="backLoanList()" ng-if="compare.loanCount > 0 && page > 1"><i class="glyphicon glyphicon-arrow-left"></i></a>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%;"></td>
+                            <td style="width:20%;" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                <div>
+                                    <ul class="chart">
+                                        <li>
+                                            <span class="value-label">{{loan.monthlyRepayment|number:2}}</span>
+                                            <span chart-heigth value="loan.monthlyRepayment" max="maxValue" class="{{loan.eng_name}}" title=""></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <img class="bank-icon img-responsive" ng-src="{{loan.logo}}" alt="">
+                                </div>
+                                <div>
+                                    <a ng-click="selectLoan(loan);loan.check=!loan.check">
+                                        <checkbox larger class="btn check" ng-init="loan.check=false" ng-model="loan.check" ng-change="loan.check=!loan.check"></checkbox>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="nextLoan-btn" ng-click="nextLoanList()" ng-if="compare.loanCount > 0 && page < maxPage "><i class="glyphicon glyphicon-arrow-right"></i></a>
+            </div>
+            <div class="loan-detail-table">
+                <table class="table table-bordered table-striped" ng-if="compare.loanCount > 0">
+                    <tbody>
+                        <tr>
+                            <td style="width:20%;">ดอกเบี้ย</td>
+                            <td style="width:20%;" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                <div ng-if="loan.preciseInt">{{loan.preciseInt | number:0 }}%</div>
+                                <div ng-if="!loan.preciseInt">{{loan.interest.max | number:0 }}%</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>โปรโมชั่น</td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td>จุดเด่น</td>
+                            <td class="text-left" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                <div ng-repeat="(key,val) in loan.highlights">
+                                    <p>{{key+1}}. {{val}}
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <section class="loan-detail" ng-if="compare.loanCount > 0">
+                    <section class="collapse-box">
+                        <header class="collapse-head">
+                            <h4>แสดงรายละเอียดสินเชื่อ</h4>
+                        </header>
+                        <article class="collapse-body">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:20%;">รายละเอียดสินเชื่อ</td>
+                                        <td style="width:20%;text-align:left;" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                            <div> - วงเงินที่ให้ {{loan.amount.min|number:0}} - {{loan.amount.max|number:0}}</div>
+                                            <div> - ระยะเวลากู้ (เดือน) {{loan.term.min|number:0}} - {{loan.term.max|number:0}}</div>
+                                            <div> - อัตราดอกเบี้ยต่อปี {{loan.interest.min|number:0}}% - {{loan.interest.max|number:0}}%</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                    </section>
+                </section>
+                <section class="loan-detail" ng-if="compare.loanCount > 0">
+                    <section class="collapse-box">
+                        <header class="collapse-head">
+                            <h4>แสดงเอกสารประกอบการสมัคร</h4>
+                        </header>
+                        <article class="collapse-body">
+                            <table class="table table-bordered table-striped" ng-if="compare.loanCount > 0">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:20%;">เอกสารประกอบการสมัคร</td>
+                                        <td style="width:20%;text-align:left;" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                            <div>
+                                                - {{loan.documents[compare.occupation].official_doc}}
+                                            </div>
+                                            <div ng-repeat="d in loan.documents[compare.occupation].fin_doc">
+                                                <div> - {{d}}</div>
+                                            </div>
+                                            <div>
+                                                - {{loan.documents[compare.occupation].bank_book}}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                    </section>
+                </section>
+                <section class="loan-detail" ng-if="compare.loanCount > 0">
+                    <section class="collapse-box">
+                        <header class="collapse-head">
+                            <h4>แสดงรายละเอียดค่าธรรมเนียม</h4>
+                        </header>
+                        <article class="collapse-body">
+                            <table class="table table-bordered table-striped" ng-if="compare.loanCount > 0">
+                                <tbody>
+                                    <tr>
+                                        <td style="width:20%;">รายละเอียดค่าธรรมเนียม</td>
+                                        <td style="width:20%;text-align:left;vertical-align:top;" ng-repeat="loan in refreshData(compare.loan_type,compare.occupation,compare.salary, compare.work_exp, compare.loanTerm, compare.loanAmount,page)">
+                                            <div ng-repeat="(key,val) in loan.fees">
+                                                <div>
+                                                    <div>{{key+1}}. {{val.name}}</div>
+                                                    <div ng-if="val.desc"> - {{val.desc}}</div>
+                                                    <div ng-if="val.remark"> - {{val.remark}}</div>
+                                                    <div ng-if="val.link"> - <a href="{{val.link}}" target="_blank">ดาวน์โหลดที่นี่</a></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
+                    </section>
+                </section>
+            </div>
+        </section>
+    </div>
+</div>

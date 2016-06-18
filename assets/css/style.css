@@ -157,16 +157,16 @@ a {
 }
 
 .menu-tab>li {
-    width: 23.5%;
+    width: 24.25%;
     float: left
 }
 
 .menu-tab>li+li {
-    margin-left: 2%
+    margin-left: 1%
 }
 
 .menu-tab>li.current-menu-item a {
-    background: #FFF;
+    background: #f3f3f3;
     color: #22a5e1
 }
 
@@ -727,6 +727,10 @@ p {
     float: left
 }
 
+.form-info>.item.col-6>div {
+    display: inline-block;
+}
+
 
 /*.form-info>.item.col-4>div+div{border-left:solid 1px #DDD}*/
 
@@ -777,7 +781,7 @@ p {
 }
 
 .form-signup-info>.item>div {
-    padding: 20px;
+    padding: 10px;
     position: relative
 }
 
@@ -990,4 +994,309 @@ p {
     color: #a94442;
     font-size: 1.6rem;
     margin-left: 10px;
+}
+
+.tab-content>.tab-pane {
+    background: #f3f3f3;
+    padding: 10px;
+}
+
+.loan-offer .tab-pane {
+    background: #fff;
+}
+
+.bank-icon-list li {
+    display: inline-block;
+}
+
+.bank-icon-list li > img {
+    width: 50px;
+}
+
+.bank-section > .container > * {
+    display: inline-block;
+}
+
+.divider-top {
+    width: 1140px;
+    margin: 0 auto;
+    border-top: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.contact-section {
+    background: #f3f3f3;
+    text-align: center;
+    padding: 8px;
+}
+
+.contact-section > img {
+    width: 80%;
+    max-height: none;
+}
+
+.contact-name {
+    margin-bottom: 0;
+}
+
+.contact-phone {
+    margin-top: 0;
+}
+
+.contact-social {
+    width: 125px;
+    height: 45px;
+    margin: 0 auto;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.contact-social.facebook {
+    background: #3d5a98;
+}
+
+.contact-social.line {
+    background: #4acf54;
+}
+
+.contact-social > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.contact-social > img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+.contact-social > .msg {
+    color: #fff;
+    text-align: center;
+    line-height: 0.5;
+}
+
+.contact-social > .msg >* {
+    margin: 0;
+}
+
+.loan-offer {
+    padding-left: 0;
+}
+
+.loan-offer .collapse-box .collapse-head {
+    padding: 8px;
+    height: 50px;
+    color: #fff;
+    background-color: #22a5e1;
+}
+
+.loan-offer .collapse-box .collapse-head h2 {
+    margin: 0;
+    line-height: 34px;
+    margin-left: 20px;
+}
+
+.loan-detail .collapse-box .collapse-head {
+    padding: 8px;
+    height: 40px;
+    color: #22a5e1;
+    background-color: #fff;
+    border: 1px solid #22a5e1;
+    border-radius: 3px;
+}
+
+.loan-detail .collapse-box .collapse-head h4 {
+    text-align: center;
+    margin: 0;
+    line-height: 24px;
+    margin-left: 20px;
+}
+
+.loan-title {
+    padding-left: 30px;
+}
+
+.loan-offer .table tr {
+    height: 50px;
+    text-align: center;
+}
+
+.barchart {
+    position: relative;
+}
+
+.barchart .table td {
+    border: 0;
+}
+
+.barchart .bank-icon {
+    max-width: 60px;
+    vertical-align: middle;
+    margin: 10px auto;
+}
+
+.collapse-head.collapsed +collapse-body {
+    display: none;
+}
+
+.backLoan-btn,
+.nextLoan-btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #3d5a98;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.backLoan-btn {
+    left: 0;
+    right: auto;
+}
+
+.backLoan-btn i,
+.nextLoan-btn i {
+    text-align: center;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.register-btn {
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.register-save-btn {
+    background-color: #22a5e1 !important;
+    border: 0;
+    border-radius: 0;
+    width: 50%;
+}
+
+#registerModal .modal-header,
+#registerModal .modal-footer {
+    border: 0;
+}
+
+#registerModal .modal-body {
+    padding: 0 20px;
+    margin: 0 30px;
+}
+
+.register-form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.loan-selected-list {
+    padding: 0;
+}
+
+.loan-selected-list li {
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 5px;
+    color: #fff;
+    list-style: none;
+    float: none;
+    position: relative;
+}
+
+.loan-selected-title {
+    position: absolute;
+    margin: 0 auto;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.loan-selected-title h1,
+.loan-selected-title h2 {
+    margin: 0;
+}
+
+.chart {
+    display: table;
+    table-layout: fixed;
+    width: 100px;
+    max-width: 120px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.chart li {
+    position: relative;
+    display: table-cell;
+    vertical-align: bottom;
+    height: 200px;
+}
+
+.chart span {
+    margin: 0 1em;
+    display: block;
+    background: rgba(209, 236, 250, 0.75);
+    animation: draw 1s ease-in-out;
+}
+
+.chart span:before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 5px 1em 0;
+    display: block;
+    text-align: center;
+    content: attr(title);
+    word-wrap: break-word;
+}
+
+.chart span.value-label {
+    background: #fff;
+}
+
+.kbank {
+    background-color: #00a44e !important;
+}
+
+.scb {
+    background-color: #6e47a7 !important;
+}
+
+.bay {
+    background-color: #feda00 !important;
+}
+
+.cimb {
+    background-color: #922929 !important;
+}
+
+.citi {
+    background-color: #0058a2 !important;
+}
+
+.uob {
+    background-color: #2a5d90 !important;
+}
+
+.ktb {
+    background-color: #3653b6 !important;
+}
+
+.thanachart {
+    background-color: #f36f21!important;
+}
+
+@keyframes draw {
+    0% {
+        height: 0;
+    }
 }

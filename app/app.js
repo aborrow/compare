@@ -15,9 +15,9 @@ angular.module('app', [
             .when('/', {
                 templateUrl: 'compare.html',
             })
-            .when('/signup', {
+            /*.when('/signup', {
                 templateUrl: 'signup.html',
-            })
+            })*/
             .otherwise({
                 redirectTo: '/'
             });
