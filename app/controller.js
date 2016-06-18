@@ -316,7 +316,23 @@ angular.module('app')
         console.log(data);
         var dataRef = new Firebase(FirebaseUrl + "/compare/user_data");
         dataRef.push(angular.copy(data)); //not yet tested
-
+        var email = {
+            'from': 'noreply@mg.aborrow.com',
+            'to': ['cholathit@aborrow.com'],
+            'subject': 'aBorrow Compare - K.' + data.user.name + ' Tel. ' + data.user.phone,
+            'text': 'test send email to you',
+        }
+        $.ajax({
+                method: "POST",
+                url: "https://api:key-a9ebcb824b4f7dac929448b82a01e9d4@api.mailgun.net/v3/mg.aborrow.com/messages",
+                data: email,
+                xhrFields: {
+                    withCredentials: true
+                }
+            })
+            .done(function(msg) {
+                alert("เจ้าหน้าที่จะติดต่อกลับโดยเร็วที่สุด");
+            });
         // dataRef.push(JSON.parse(data)); //not yet tested
         // $http({
         //         // headers:{
