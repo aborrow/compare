@@ -1,0 +1,214 @@
+<div class="container">
+    <div class="col-md-12">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active">
+                <div class="offerList">
+                    <div>
+                        <h2 class="loan-title">แก้ไขข้อมูลสินเชื่อ</h2>
+                        <section class="loan-table-list loan-offer">
+                            <div class="register-form" style="margin-bottom:50px;">
+                                <form ng-submit="submitData(loan)" name="form" ng-if="!isLoading">
+                                    <div class="form-signup-info" style="background-color:white;">
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">ชื่อ</h4>
+                                                <input type="text" class="input-info" ng-model="loan.loan_name" required/>
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">ธนาคาร</h4>
+                                                <select class="input-info" ng-model="loan.bank" autocomplete="off" ng-options="bank as bank.bank_name for bank in banks track by bank.eng_name" required>
+                                                    <option value="">กรุณาเลือกธนาคาร</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="item col-2">
+                                            <div>
+                                                <h4 class="title">วงเงินที่ให้กู้เริ่มต้น</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.amount.min" required/>
+                                            </div>
+                                            <div>
+                                                <h4 class="title">วงเงินที่ให้กู้สูงสุด</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.amount.max" required/>
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">หมายเหตุ (วงเงินที่ให้กู้)</h4>
+                                                <input type="text" class="input-info" ng-model="loan.amount.remarks" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-2">
+                                            <div>
+                                                <h4 class="title">ระยะเวลาให้กู้เริ่มต้น</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.term.min" />
+                                            </div>
+                                            <div>
+                                                <h4 class="title">ระยะเวลาให้กู้สูงสุด</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.term.max" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">หมายเหตุ (ระยะเวลาให้กู้)</h4>
+                                                <input type="text" class="input-info" ng-model="loan.term.remarks" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">URL</h4>
+                                                <input type="text" class="input-info" ng-model="loan.url" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-signup-info" style="background-color:white;">
+                                        <div class="item col-2">
+                                            <div>
+                                                <h4 class="title">ดอกเบี้ยเริ่มต้น</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.interest.min" />
+                                            </div>
+                                            <div>
+                                                <h4 class="title">ดอกเบี้ยสูงสุด</h4>
+                                                <input awnum num-thousand="true" num-int="8" type="text" class="input-info" ng-model="loan.interest.max" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">หมายเหตุ (ดอกเบี้ย)</h4>
+                                                <input type="text" class="input-info" ng-model="loan.interest.remarks" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">interest term</h4>
+                                                <input type="text" class="input-info" ng-model="loan.interest_term.term" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-1">
+                                            <div>
+                                                <h4 class="title">หมายเหตุ interest term</h4>
+                                                <input type="text" class="input-info" ng-model="loan.interest_term.remarks" />
+                                            </div>
+                                        </div>
+                                        <div class="item col-2">
+                                            <div>
+                                                <h4 class="title">จ่ายขึ้นต่ำ</h4>
+                                                <input type="text" class="input-info" ng-model="addingaddingLoan.minimum_repay.rate" />
+                                            </div>
+                                            <div>
+                                                <h4 class="title">หมายเหตุ จ่ายขึ้นต่ำ</h4>
+                                                <input type="text" class="input-info" ng-model="addingaddingLoan.minimum_repay.remarks" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-if="loan.highlights">
+                                        <h2>จุดเด่น</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.highlights" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2>interest_tier(employee)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.interest_tiers.employee" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <h2>interest_tier(entrepreneur)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.interest_tiers.entrepreneur" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2>qualifications(employee)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.qualifications.employee" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <h2>qualifications(entrepreneur)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.qualifications.entrepreneur" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2>เอกสารประกอบการสมัคร (employee)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.documents.employee" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <h2>เอกสารประกอบการสมัคร (entrepreneur)</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.documents.entrepreneur" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2>วิธีชำระเงิน</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.payment_methods" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h2>ค่าธรรมเนียม</h2>
+                                        <div class="form-signup-info" style="background-color:white;">
+                                            <div class="item col-1">
+                                                <div>
+                                                    <div ng-jsoneditor ng-model="loan.fees" options="{mode:'tree'}"></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="info-button text-center">
+                                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-success btn-lg">บันทึก</button>
+                                        <a href="#/loans" class="btn btn-btn-default btn-lg">ยกเลิก</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

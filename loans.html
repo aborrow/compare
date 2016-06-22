@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col-md-12">
+        <ul class="menu-tab">
+            <li ng-class="{'current-menu-item':loan_type==='cash'}" ng-model="loan_type" ng-click="setLoanType('cash')"><a href="javascript:void(0)">เงินสด</a></li>
+            <li ng-class="{'current-menu-item':loan_type==='car'}" ng-model="loan_type" ng-click="setLoanType('car')"><a href="javascript:void(0)">รถ</a></li>
+            <li ng-class="{'current-menu-item':loan_type==='house'}" ng-model="loan_type" ng-click="setLoanType('house')"><a href="javascript:void(0)">บ้าน</a></li>
+            <li ng-class="{'current-menu-item':loan_type==='bussiness'}" ng-model="loan_type" ng-click="setLoanType('bussiness')"><a href="javascript:void(0)">ธุรกิจ</a></li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active">
+                <ul class="menu-tab tab-secondary">
+                    <li ng-class="{'current-menu-item':loan_subtype==='loan'}" ng-model="loan_subtype" ng-click="setLoanSubType('loan')"><a href="javascript:void(0)">สินเชื่อส่วนบุคคล</a></li>
+                    <li ng-class="{'current-menu-item':loan_subtype==='card'}" ng-model="loan_subtype" ng-click="setLoanSubType('card')"><a href="javascript:void(0)">บัตรกดเงินสด</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" ng-include="templateURL">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

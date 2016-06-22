@@ -1,0 +1,26 @@
+<div class="offerList">
+    <div>
+        <div class="table-toolbar">
+            <h2 class="loan-title">รายการบัตรกดเงินสด</h2>
+            <a href="#/loans/create" class="btn btn-default btn-lg add-btn-toolbar">เพิ่ม</a>
+        </div>
+        <section class="loan-table-list loan-offer">
+            <table class="table table-bordered table-striped" style="background-color:white;">
+                <thead>
+                    <tr>
+                        <th>ชื่อ</th>
+                        <th>ธนาคาร</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="loan in data[loan_subtype]">
+                        <td>{{loan.loan_name}}</td>
+                        <td>{{loan.bank.bank_name}}</td>
+                        <td class="text-center"><a href="#/loans/card/{{loan.$id}}"><i class="icon edit-icon"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>

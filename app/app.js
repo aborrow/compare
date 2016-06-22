@@ -8,19 +8,34 @@ angular.module('app', [
         'tabs',
         'sticky',
         'ui.checkbox',
-        'ngOrderObjectBy'
+        'ngOrderObjectBy',
+        'cfp.loadingBar',
+        'ng.jsoneditor'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'compare.html',
+                controller: "mainController"
             })
-            /*.when('/signup', {
-                templateUrl: 'signup.html',
-            })*/
-            .otherwise({
-                redirectTo: '/'
-            });
+            .when('/loans', {
+                templateUrl: 'loans.html',
+                controller: "loansController"
+            })
+            .when('/loans/create', {
+                templateUrl: 'app/templates/loans/add_loan.html',
+                controller: "loansController",
+            }).when('/loans/loan/:id', {
+                templateUrl: 'app/templates/loans/edit_loan.html',
+                controller: "loanController",
+            }).when('/loans/card/:id', {
+                templateUrl: 'app/templates/loans/edit_loan.html',
+                controller: "cardController"
+            })
+
+        .otherwise({
+            redirectTo: '/'
+        });
     }])
 
 .constant('FirebaseUrl', "https://aborrow-test.firebaseio.com/")
