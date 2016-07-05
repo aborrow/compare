@@ -1,32 +1,48 @@
 /* Scss Document */
+
+
 /* XS */
+
+
 /* LARGE SCREEN */
 
-@media (max-width: 769px){
+@media (max-width: 769px) {
     #offer-content {
-       display: flex;
-       flex-direction: column;
+        display: flex;
+        flex-direction: column;
     }
-    
-    #offer-content > .col-md-3{
+    #offer-content > .col-md-3 {
         order: 2;
     }
 }
-@media (max-width: 480px){
+
+@media (max-width: 1000px) {
     .form-info>.item.col-3>div,
-    .form-info>.item.col-2>div{
+    .form-info>.item.col-2>div,
+    .form-info>.item.col-4>div {
         width: auto;
         float: none;
     }
-    .compare-item .btn.-loaninterest,
-    .compare-item .btn.-loandetail{
-         width: 50%;
-    }
-    .compare-item .btn.-loandetailsub{
-         width: 100%;
-    }
-    .compare-item .btn.-loandetailsub.selected {
+    .register-form {
         width: 100%;
-        height: auto;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 500px) {
+    #top-navigation {
+        padding-left: 30px !important;
+    }
+    #main-header .container {
+        width: 90%;
+    }
+    .logo_container > a > img {
+        width: 75px;
+    }
+}
+
+@media (max-width: 400px) {
+    .nav>li>a>img {
+        width: 40px;
     }
 }

@@ -1,6 +1,6 @@
 <div class="offerList">
     <div class="form-info">
-        <div class="item col-6">
+        <div class="item col-6 hidden-xs">
             <div>
                 <div class="radio">
                     <label> ระยะเวลาผ่อน (เดือน)</label>
@@ -9,43 +9,47 @@
             <div>
                 <div class="radio">
                     <label>
-                                            <input type="radio" name="loan_term" checked value="12"/>
-                                            12
-                                        </label>
+                        <input type="radio" name="loan_term" checked value="12"/>
+                        12
+                    </label>
                 </div>
             </div>
             <div>
                 <div class="radio">
                     <label>
-                                            <input type="radio" name="loan_term" value="24"/>
-                                                24
-                                            </label>
+                        <input type="radio" name="loan_term" value="24"/>
+                        24
+                    </label>
                 </div>
             </div>
             <div>
                 <div class="radio">
                     <label>
-                                            <input type="radio" name="loan_term" value="36"/>
-                                                36
-                                            </label>
+                    <input type="radio" name="loan_term" value="36"/>
+                        36
+                    </label>
                 </div>
             </div>
             <div>
                 <div class="radio">
                     <label>
-                                            <input type="radio" name="loan_term" value="48"/>
-                                                48
-                                            </label>
+                    <input type="radio" name="loan_term" value="48"/>
+                        48
+                    </label>
                 </div>
             </div>
             <div>
                 <div class="radio">
                     <label>
-                                            <input type="radio" name="loan_term" value="60"/>
-                                                60
-                                            </label>
+                    <input type="radio" name="loan_term" value="60"/>
+                        60
+                    </label>
                 </div>
             </div>
+        </div>
+        <div class="visible-xs" style="margin-bottom: 20px;">
+            <h4 class="title">ระยะเวลาการกู้ (เดือน)</h4>
+            <dropdown placeholder="กรุณาเลือกระยะเวลาการกู้ (เดือน)" ng-model="compare.loanTerm" name="loanTerm" selected="focusNext($event)" items="[12,24,36,48,60,72]"></dropdown>
         </div>
     </div>
     <div>
@@ -83,6 +87,7 @@
                 <a class="nextLoan-btn" ng-click="nextLoanList()" ng-if="compare.loanCount > 0 && page < maxPage "><i class="glyphicon glyphicon-arrow-right"></i></a>
             </div>
             <div class="loan-detail-table">
+                <a class="backLoan-btn" ng-click="backLoanList()" ng-if="compare.loanCount > 0 && page > 1"><i class="glyphicon glyphicon-arrow-left"></i></a>
                 <table class="table table-bordered table-striped" ng-if="compare.loanCount > 0">
                     <tbody>
                         <tr>
@@ -107,6 +112,7 @@
                         </tr>
                     </tbody>
                 </table>
+                <a class="nextLoan-btn" ng-click="nextLoanList()" ng-if="compare.loanCount > 0 && page < maxPage "><i class="glyphicon glyphicon-arrow-right"></i></a>
                 <section class="loan-detail" ng-if="compare.loanCount > 0">
                     <section class="collapse-box">
                         <header class="collapse-head">

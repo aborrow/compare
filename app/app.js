@@ -2,7 +2,7 @@
 
 // Declare app level module which depends on views, and components
 angular.module('app', [
-        'ngRoute',
+        'ui.router',
         'firebase',
         'dynamicNumber',
         'tabs',
@@ -12,32 +12,35 @@ angular.module('app', [
         'cfp.loadingBar',
         'ng.jsoneditor'
     ])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider
-            .when('/', {
+    .config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('compare', {
+                url: '/',
                 templateUrl: 'compare.html',
                 controller: "mainController"
             })
-            .when('/loans', {
+            .state('loans', {
+                url: '/loans',
                 templateUrl: 'loans.html',
                 controller: "loansController"
             })
-            .when('/loans/create', {
-                templateUrl: 'app/templates/loans/add_loan.html',
+             .state('loan/create', {
+                url: '/loans',
+                 templateUrl: 'app/templates/loans/add_loan.html',
                 controller: "loansController",
-            }).when('/loans/loan/:id', {
+            })
+            .state('loan', {
+                url: '/loans/loan/:id',
                 templateUrl: 'app/templates/loans/edit_loan.html',
                 controller: "loanController",
-            }).when('/loans/card/:id', {
+            }).state('card', {
+                url: '/loans/card/:id',
                 templateUrl: 'app/templates/loans/edit_loan.html',
-                controller: "cardController"
-            })
+                controller: "cardController",
+            });
 
-        .otherwise({
-            redirectTo: '/'
-        });
+         $urlRouterProvider.otherwise("/");
     }])
-
 .constant('FirebaseUrl', "https://aborrow-test.firebaseio.com/")
 
 

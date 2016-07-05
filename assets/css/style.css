@@ -9,14 +9,14 @@
     content: '';
     clear: both
 }
-
 html {
     font-size: 10px;
-    overflow-x: hidden
+    overflow-x: hidden;
 }
 
 body {
     font: 400 normal 18px 'Helvethaica';
+    overflow-x: hidden;
 }
 
 h1 {
@@ -1044,8 +1044,7 @@ p {
 }
 
 .contact-social {
-    width: 125px;
-    height: 45px;
+    width: 100%;
     margin: 0 auto;
     padding: 8px;
     margin-bottom: 10px;
@@ -1066,7 +1065,7 @@ p {
 
 .contact-social > img {
     width: 30px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .contact-social > .msg {
@@ -1160,6 +1159,20 @@ p {
     right: auto;
 }
 
+.loan-detail-table {
+    position: relative;
+}
+
+.loan-detail-table .backLoan-btn {
+    left: -60px;
+    top: 80px;
+}
+
+.loan-detail-table .nextLoan-btn {
+    right: -60px;
+    top: 80px;
+}
+
 .backLoan-btn i,
 .nextLoan-btn i {
     text-align: center;
@@ -1169,9 +1182,12 @@ p {
 }
 
 .register-btn {
-    font-size: 20px;
+    font-size: 25px;
     width: 100%;
+    padding: 5% 10%;
     margin-bottom: 10px;
+    border-color: #4acf54;
+    background-color: #4acf54;
 }
 
 .register-save-btn {
@@ -1261,6 +1277,10 @@ p {
 
 .chart span.value-label {
     background: #fff;
+}
+
+.loan-bar-section {
+    margin-top: 30px;
 }
 
 .loan-table-list {

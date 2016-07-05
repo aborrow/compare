@@ -124,10 +124,10 @@ angular.module('app')
         }
 
 
-    }).controller('loanController', function($firebaseObject, $firebaseArray, FirebaseUrl, $routeParams, $scope, cfpLoadingBar, $location) {
+    }).controller('loanController', function($firebaseObject, $firebaseArray, FirebaseUrl, $stateParams, $scope, cfpLoadingBar, $location) {
         var refLoans = new Firebase(FirebaseUrl + '/loans/loans');
         var refBank = new Firebase(FirebaseUrl + '/loans/banks');
-        var id = $routeParams.id;
+        var id = $stateParams.id;
         var obj = $firebaseObject(refLoans.child(id));
 
         var interest_term = {};
@@ -151,10 +151,10 @@ angular.module('app')
         };
 
 
-    }).controller('cardController', function($firebaseObject, $firebaseArray, FirebaseUrl, $routeParams, $scope, cfpLoadingBar, $location) {
+    }).controller('cardController', function($firebaseObject, $firebaseArray, FirebaseUrl, $stateParams, $scope, cfpLoadingBar, $location) {
         var refCards = new Firebase(FirebaseUrl + '/loans/cards');
         var refBank = new Firebase(FirebaseUrl + '/loans/banks');
-        var id = $routeParams.id;
+        var id = $stateParams.id;
         var obj = $firebaseObject(refCards.child(id));
         cfpLoadingBar.start();
         $scope.isLoading = true;

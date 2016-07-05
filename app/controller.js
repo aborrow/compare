@@ -14,30 +14,8 @@ angular.module('app')
             });
         };
     })
-    // .config(['$routeProvider', function($routeProvider) {
-    //   $routeProvider
-
-//   .when('/kk', {
-//     templateUrl: '../index.html',
-//     controller: 'mainController'
-//   })
-
-//   .when('/clients_list', {
-//     templateUrl: '../clients.html',
-//     controller: 'clientController',
-//     // resolve: {
-//     //           auth: function(Auth, $location){
-//     //             return Auth.auth.$requireAuth().catch(function(){
-//     //              console.log('test');
-//     //               $location.path( "/signin" );
-//     //             });
-//     //          }
-//     //        }
-//   });
-// }])
-
 .controller('mainController', function($firebaseObject, $firebaseArray,
-    FirebaseUrl, $scope, $route, $filter,
+    FirebaseUrl, $scope, $filter,
     $http, focus, $timeout) {
     // var config = {
     //   apiKey: "AIzaSyDg1Hfu7KlBd6u51q8NE80_yet4yDix9Jc",
@@ -155,7 +133,7 @@ angular.module('app')
             }
         }
         if ($scope.inputStep < 6) {
-            let eleId = $scope.inputControls[$scope.inputStep];
+            var eleId = $scope.inputControls[$scope.inputStep];
             if (!$scope.focused) {
                 focusToElement(eleId);
             }
